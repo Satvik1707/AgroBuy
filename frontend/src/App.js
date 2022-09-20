@@ -15,6 +15,7 @@ import PaymentScreen from "./screens/PaymentScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import OrderScreen from "./screens/OrderScreen";
 import AdminScreen from "./screens/AdminScreen";
+import BreederScreen from "./screens/BreederScreen";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/register" component={RegisterScreen} />
           <Route path="/cart/:id?" component={CartScreen} />
           <Route path="/product/:id" component={ProductDetails} />
+          <Route path="/breeder" component={BreederScreen} />
           <Route path="/" component={HomeScreen} exact />
         </Container>
       </main>

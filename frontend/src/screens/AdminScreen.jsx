@@ -16,6 +16,7 @@ const AdminScreen = (history) => {
       window.location.href = "/ ";
     }
   });
+  
   return (
     <Container>
       <Row>
