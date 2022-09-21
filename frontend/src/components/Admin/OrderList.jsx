@@ -10,9 +10,9 @@ const OrderList = () => {
   const orderList = useSelector((state) => state.getAllOrders);
 
   // const { loading, error, order } = orderList;
-  // useEffect(() => {
-  //   dispatch(getAllOrders());
-  // }, [dispatch]);
+  // // useEffect(() => {
+  // //   dispatch(getAllOrders());
+  // // }, [dispatch]);
   return (
     <>
       <>

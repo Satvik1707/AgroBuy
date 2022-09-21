@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from 'axios';
 import { Form, Row, Col, Button } from "react-bootstrap";
 import { addProduct } from "../../actions/productActions";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,29 +8,33 @@ import Message from "../shared/Message";
 import Success from "../shared/Success";
 
 const RegistrationForm = () => {
-  const [name, setname] = useState("");
-  const [price, setprice] = useState();
-  const [image, setimage] = useState("");
-  const [description, setdescription] = useState("");
-  const [category, setcategory] = useState("");
-  const [brand, setbrand] = useState("");
+  const [firstName, setfirstName] = useState("");
+  const [lastName, setlastName] = useState();
+  const [address1, setaddress1] = useState("");
+  const [address2, setaddress2] = useState("");
+  const [city, setcity] = useState("");
+  const [state, setstate] = useState("");
+  const [pincode, setpincode] = useState("");
+  const [phnNo, setphnNo] = useState("");
   
   const addProductState = useSelector((state) => state.addProduct);
-  const { loading, error, success } = addProductState;
+    const { loading, error, success } = addProductState;
 
   const dispatch = useDispatch();
 
   const submitForm = (e) => {
     e.preventDefault();
-    const product = {
-      name,
-      image,
-      description,
-      category,
-      price,
-      brand,
+    const register = {
+      firstName,
+      lastName,
+      address1,
+      address2,
+      city,
+      state,
+      pincode,
+      phnNo
     };
-    dispatch(addProduct(product));
+    dispatch(addProduct(register));
   };
   return (
     <div>
@@ -43,8 +48,8 @@ const RegistrationForm = () => {
               <Form.Label>First Name</Form.Label>
               <Form.Control
                 type="text"
-                value={name}
-                onChange={(e) => setname(e.target.value)}
+                value={firstName}
+                onChange={(e) => setfirstName(e.target.value)}
                 placeholder="First name"
               />
             </Form.Group>
@@ -52,8 +57,8 @@ const RegistrationForm = () => {
               <Form.Label>Last Name</Form.Label>
               <Form.Control
                 type="text"
-                value={price}
-                onChange={(e) => setprice(e.target.value)}
+                value={lastName}
+                onChange={(e) => setlastName(e.target.value)}
                 placeholder="Last Name"
               />
             </Form.Group>
@@ -64,8 +69,8 @@ const RegistrationForm = () => {
             <Form.Label>Address Line 1</Form.Label>
             <Form.Control
               type="text"
-              value={category}
-              onChange={(e) => setcategory(e.target.value)}
+              value={address1}
+              onChange={(e) => setaddress1(e.target.value)}
               placeholder="Address Line 1"
             />
           </Form.Group>
@@ -73,8 +78,8 @@ const RegistrationForm = () => {
             <Form.Label>Address Line 2</Form.Label>
             <Form.Control
               type="text"
-              value={brand}
-              onChange={(e) => setbrand(e.target.value)}
+              value={address2}
+              onChange={(e) => setaddress2(e.target.value)}
               placeholder="Address Line 2"
             />
           </Form.Group>
@@ -84,8 +89,8 @@ const RegistrationForm = () => {
             <Form.Label>City</Form.Label>
             <Form.Control
               ttype="text"
-              value={image}
-              onChange={(e) => setimage(e.target.value)}
+              value={city}
+              onChange={(e) => setcity(e.target.value)}
               placeholder="City"
             />
           </Form.Group>
@@ -93,17 +98,17 @@ const RegistrationForm = () => {
             <Form.Label>State</Form.Label>
             <Form.Control
               type="text"
-              value={description}
-              onChange={(e) => setdescription(e.target.value)}
+              value={state}
+              onChange={(e) => setstate(e.target.value)}
               placeholder="State"
             />
           </Form.Group>
           <Form.Group as = {Col} controlId="formGridAddress1">
             <Form.Label>Pin Code</Form.Label>
             <Form.Control
-              type="text"
-              value={description}
-              onChange={(e) => setdescription(e.target.value)}
+              type="number"
+              value={pincode}
+              onChange={(e) => setpincode(e.target.value)}
               placeholder="Pin Code"
             />
           </Form.Group>
@@ -112,16 +117,16 @@ const RegistrationForm = () => {
         <Form.Group as = {Col} controlId="formGridAddress1">
             <Form.Label>Phone No.</Form.Label>
             <Form.Control
-              type="text"
-              value={description}
-              onChange={(e) => setdescription(e.target.value)}
+              type="number"
+              value={phnNo}
+              onChange={(e) => setphnNo(e.target.value)}
               placeholder="Phone No."
             />
           </Form.Group>
         </Row>
 
         <Button variant="primary" type="submit">
-          Add New
+          Submit
         </Button>
       </Form>
     </div>

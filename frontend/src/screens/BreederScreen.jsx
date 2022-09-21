@@ -1,5 +1,6 @@
 import React from "react";
 import RegistrationForm from "../components/Breeder/RegistrationForm";
+import BreederForm from "../components/Breeder/BreederForm";
 import { Container, Row, Col } from "react-bootstrap";
 import { Switch, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -17,6 +18,12 @@ const BreederScreen = () => {
             <a href="/breeder/register" className="btn btn-primary ">
               Registration Form
             </a>
+            <br />
+          </div>
+          <div className="btn-group-vertical" role="group">
+            <a href="/breeder/breederForm" className="btn btn-primary ">
+              Breeder's Form
+            </a>
           </div>
         </Col>
         <Col md={10}>
@@ -25,6 +32,11 @@ const BreederScreen = () => {
               exact
               path="/breeder/register"
               component={RegistrationForm}
+            />
+            <Route
+              exact
+              path="/breeder/breederForm"
+              component={BreederForm}
             />
           </Switch>
         </Col>
