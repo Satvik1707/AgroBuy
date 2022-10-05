@@ -1,11 +1,7 @@
 import React, { useState } from "react";
-import axios from 'axios';
 import { Form, Row, Col, Button } from "react-bootstrap";
-import { addProduct } from "../../actions/productActions";
-import { useDispatch, useSelector } from "react-redux";
-import Loader from "../shared/Loader";
-import Message from "../shared/Message";
-import Success from "../shared/Success";
+import { breederRegister } from "../../actions/userAction";
+import { useDispatch } from "react-redux";
 
 const RegistrationForm = () => {
   const [firstName, setfirstName] = useState("");
@@ -16,15 +12,13 @@ const RegistrationForm = () => {
   const [state, setstate] = useState("");
   const [pincode, setpincode] = useState("");
   const [phnNo, setphnNo] = useState("");
-  
-  const addProductState = useSelector((state) => state.addProduct);
-    const { loading, error, success } = addProductState;
-
+  const [email, setemail] = useState("");
   const dispatch = useDispatch();
 
   const submitForm = (e) => {
     e.preventDefault();
     const register = {
+      email,
       firstName,
       lastName,
       address1,
@@ -32,15 +26,12 @@ const RegistrationForm = () => {
       city,
       state,
       pincode,
-      phnNo
+      phnNo,
     };
-    dispatch(addProduct(register));
+    dispatch(breederRegister(register));
   };
   return (
     <div>
-      {loading && <Loader />}
-      {error && <Message error="Add new product error" />}
-      {success && <Success error="Product added succesfully" />}
       <Form onSubmit={submitForm} className="bg-light p-4">
         <Row className="mb-2">
           <Row>
@@ -64,7 +55,18 @@ const RegistrationForm = () => {
             </Form.Group>
           </Row>
         </Row>
-        <Row >
+        <Row>
+          <Form.Group as={Col} controlId="formGridZip">
+            <Form.Label>Email Address</Form.Label>
+            <Form.Control
+              type="text"
+              value={email}
+              onChange={(e) => setemail(e.target.value)}
+              placeholder="Email"
+            />
+          </Form.Group>
+        </Row>
+        <Row>
           <Form.Group as={Col} className="mb-3" controlId="formGridAddress2">
             <Form.Label>Address Line 1</Form.Label>
             <Form.Control
@@ -94,7 +96,7 @@ const RegistrationForm = () => {
               placeholder="City"
             />
           </Form.Group>
-          <Form.Group as = {Col} controlId="formGridAddress1">
+          <Form.Group as={Col} controlId="formGridAddress1">
             <Form.Label>State</Form.Label>
             <Form.Control
               type="text"
@@ -103,7 +105,7 @@ const RegistrationForm = () => {
               placeholder="State"
             />
           </Form.Group>
-          <Form.Group as = {Col} controlId="formGridAddress1">
+          <Form.Group as={Col} controlId="formGridAddress1">
             <Form.Label>Pin Code</Form.Label>
             <Form.Control
               type="number"
@@ -114,7 +116,7 @@ const RegistrationForm = () => {
           </Form.Group>
         </Row>
         <Row className="mb-2">
-        <Form.Group as = {Col} controlId="formGridAddress1">
+          <Form.Group as={Col} controlId="formGridAddress1">
             <Form.Label>Phone No.</Form.Label>
             <Form.Control
               type="number"

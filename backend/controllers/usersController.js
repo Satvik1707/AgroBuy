@@ -35,6 +35,7 @@ const authController = asyncHandler(async (req, res) => {
       email: user.email,
       isAdmin: user.isAdmin,
       token: generateToken(user._id),
+      isBreeder: user.isBreeder,
     });
   } else {
     res.status(401);
@@ -78,6 +79,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     throw new Error("user Not Found!");
   }
 });
+
 
 module.exports = {
   authController,

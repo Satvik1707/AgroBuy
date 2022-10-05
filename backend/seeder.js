@@ -5,8 +5,12 @@ const users = require("./data/users");
 const User = require("./models/UserModel");
 const Product = require("./models/ProductModel");
 const Order = require("./models/OrderModel");
+const breeder = require("./data/breeder");
 const products = require("./data/products");
 const connectDb = require("./config/config");
+const Breeder = require("./models/BreederModel");
+const seeds = require("./data/seeds");
+const Seeds = require("./models/SeedModel");
 
 dotenv.config();
 connectDb();
@@ -16,7 +20,10 @@ const importData = async () => {
     await Order.deleteMany();
     await Product.deleteMany();
     await User.deleteMany();
+    await Breeder.deleteMany();
     const createUser = await User.insertMany(users);
+    const craetebreeder = await Breeder.insertMany(breeder);
+    const createseed = await Seeds.insertMany(seeds);
     const adminUser = createUser[0]._id;
     const sampleData = products.map((product) => {
       return { ...product, user: adminUser };
@@ -35,6 +42,7 @@ const dataDestory = async () => {
     await Order.deleteMany();
     await Product.deleteMany();
     await User.deleteMany();
+    await Breeder.deleteMany();
     console.log("Data Destory".green.inverse);
     process.exit();
   } catch (error) {

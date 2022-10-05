@@ -6,6 +6,8 @@ import {
   productDetailsReducer,
   addProductReducer,
   getProductByIdReducer,
+  addSeedsReducer,
+  listMySeedsReducer,
 } from "./reducers/productReducer";
 import {
   userLoginReducer,
@@ -13,6 +15,7 @@ import {
   userDetailsReducer,
   userUpdateProfileReducer,
   getAllUserReducer,
+  createBreederReducer,
 } from "./reducers/userReducers";
 import { cartReducer } from "./reducers/cartReducer";
 import {
@@ -48,6 +51,10 @@ const reducer = combineReducers({
   orderListMy: orderListMyReducer,
   getAllUser: getAllUserReducer,
   addProduct: addProductReducer,
+  getProductById: getProductByIdReducer,
+  createBreeder: createBreederReducer,
+  addSeeds: addSeedsReducer,
+  listMySeeds: listMySeedsReducer,
 });
 const initialState = {
   // cart: { cartItems: "techinfo" },

@@ -13,12 +13,12 @@ const BreederScreen = () => {
   return (
     <Container>
       <Row>
-        <h1 className="text-center p-2 ">Breeder Panel</h1>
+        <h1 className="text-center p-2 ">Transport Panel</h1>
         <br />
         <Col md={2}>
-          {!userInfo.isBreeder ? (
+          {!userInfo.isTransport ? (
             <div className="btn-group-vertical" role="group">
-              <a href="/breeder/register" className="btn btn-primary ">
+              <a href="/transport/register" className="btn btn-primary ">
                 Registration Form
               </a>
               <br />
@@ -26,14 +26,14 @@ const BreederScreen = () => {
           ) : (
             <div>
               <div className="btn-group-vertical" role="group">
-                <a href="/breeder/breederForm" className="btn btn-primary ">
-                  Breeder's Form
+                <a href="/transport/allbids" className="btn btn-primary ">
+                  All Open bids
                 </a>
                 <br />
               </div>
               <div className="btn-group-vertical" role="group">
-                <a href="/breeder/myseeds" className="btn btn-primary ">
-                  Past Seeds
+                <a href="/transport/mybids" className="btn btn-primary ">
+                  My bids
                 </a>
               </div>
             </div>
@@ -43,11 +43,11 @@ const BreederScreen = () => {
           <Switch>
             <Route
               exact
-              path="/breeder/register"
+              path="/transport/register"
               component={RegistrationForm}
             />
-            <Route exact path="/breeder/breederForm" component={BreederForm} />
-            <Route exact path="/breeder/myseeds" component={PastSeeds} />
+            <Route exact path="/transport/allbids" component={BreederForm} />
+            <Route exact path="/transport/mybids" component={PastSeeds} />
           </Switch>
         </Col>
       </Row>

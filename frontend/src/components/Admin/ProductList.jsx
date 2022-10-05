@@ -46,7 +46,7 @@ const ProductList = () => {
                       <td>{product.countInStock}</td>
                       <td>
                         &nbsp; &nbsp; &nbsp;
-                        <Link to ={'/admin/editproduct/'+`${product._id}`}>
+                        <Link to ={'/admin/editproduct/' + `${product._id}`}>
                           <AiFillEdit style = {{cursor: "pointer"}}/>
                         </Link>
                         &nbsp; &nbsp; &nbsp;

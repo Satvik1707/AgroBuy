@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Form, Row, Col, Button } from "react-bootstrap";
-import { addProduct } from "../../actions/productActions";
+import { addSeeds } from "../../actions/productActions";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../shared/Loader";
 import Message from "../shared/Message";
@@ -13,7 +13,7 @@ const BreederForm = () => {
     const [date, setdate] = useState("");
     const [category, setcategory] = useState("");
     
-    const addProductState = useSelector((state) => state.addProduct);
+    const addProductState = useSelector((state) => state.addSeeds);
     const { loading, error, success } = addProductState;
   
     const dispatch = useDispatch();
@@ -27,13 +27,13 @@ const BreederForm = () => {
         date,
         category
       };
-      dispatch(addProduct(product));
+      dispatch(addSeeds(product));
     };
     return (
       <div>
         {loading && <Loader />}
         {error && <Message error="Add new product error" />}
-        {success && <Success error="Product added succesfully" />}
+        {success && <Success error="Application sent successfully" />}
         <Form onSubmit={submitForm} className="bg-light p-4">
           <Row className="mb-2">
             <Row>

@@ -158,3 +158,16 @@ export const deleteUser = (userid) => async (dispatch) => {
     swal("Error while deleting user");
   }
 };
+
+export const breederRegister = (user) => async (dispatch) => {
+  dispatch({ type: "CREATE_BREEDER_REQUEST" });
+  try {
+    const res = await axios.post("/api/users/createbreeder", {user});
+    swal("sdfgh");
+    dispatch({ type: "CREATE_BREEDER_SUCCESS", payload: res.data });
+    console.log(res);
+    // window.location.href = "/breeder";
+  } catch (error) {
+    dispatch({ type: "CREATE_BREEDER_FAILS", payload: error });
+  }
+};

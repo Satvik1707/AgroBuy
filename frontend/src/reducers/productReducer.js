@@ -60,3 +60,39 @@ export const getProductByIdReducer = (state = {}, action) => {
       return state;
   }
 };
+
+export const addSeedsReducer = (state = {}, action) => {
+  switch(action.type) {
+    case "ADD_SEEDS_REQUEST":
+      return {loading: true, ...state};
+    case "ADD_SEEDS_SUCCESS":
+      return {loading:false, product:action.payload}
+    case "ADD_SEEDS_FAILS":
+      return {loading:false, error:action.payload}
+    default:
+      return state;
+  }
+}
+
+export const listMySeedsReducer = (state = { seeds: [] }, action) => {
+  switch (action.type) {
+    case "SEEDS_LIST_MY_REQUEST":
+      return {
+        loading: true,
+      };
+    case "SEEDS_LIST_MY_SUCCESS":
+      return {
+        loading: false,
+        seeds: action.payload,
+      };
+    case "SEEDS_LIST_MY_FAIL":
+      return {
+        loading: false,
+        error: action.payload,
+      };
+    case "SEEDS_LIST_MY_RESET":
+      return { seeds: [] };
+    default:
+      return state;
+  }
+};

@@ -68,6 +68,7 @@ export const addProduct = (product) => async (dispatch) => {
     swal("Error while adding product");
   }
 };
+
 export const getProductById = (id) => async (dispatch) => {
   dispatch({ type: "GET_PRODUCTBYID_REQUEST" });
   try {
@@ -76,5 +77,52 @@ export const getProductById = (id) => async (dispatch) => {
     dispatch({ type: "GET_PRODUCTBYID_SUCCESS", payload: response.data });
   } catch (error) {
     dispatch({ type: "GET_PRODUCTBYID_FAILS", payload: error });
+  }
+};
+
+export const editProduct = (product) => async (dispatch) => {
+  dispatch({ type: "EDIT_PRODUCT_REQUEST" });
+  try {
+    const response = await axios.post("/api/products/editproduct");
+    console.log(response);
+  } catch (error) {
+    dispatch({ type: "EDIT_PRODUCT_FAILS", payload: error });
+    swal("Error while updating product");
+  }
+};
+
+export const addSeeds = (product) => async (dispatch) => {
+  dispatch({ type: "ADD_SEEDS_REQUEST" });
+  try {
+    const response = await axios.post("/api/products/addseeds", { product });
+    dispatch({ type: "ADD_SEEDS_SUCCESS", payload: response.data });
+  } catch (error) {
+    dispatch({ type: "ADD_SEEDS_FAILS", payload: error.stack });
+  }
+};
+
+export const listMySeeds = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: "SEEDS_LIST_MY_REQUEST",
+    });
+    const {
+      userLogin: { userInfo },
+    } = getState();
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    const { data } = await axios.get("/api/products/myseeds", config);
+    dispatch({ type: "SEEDS_LIST_MY_SUCCESS", payload: data });
+  } catch (error) {
+    dispatch({
+      type: "SEEDS_LIST_MY_FAIL",
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
   }
 };
