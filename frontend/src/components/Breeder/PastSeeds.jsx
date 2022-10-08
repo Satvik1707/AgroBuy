@@ -11,6 +11,8 @@ const PastSeeds = () => {
   const seedList = useSelector((state) => state.listMySeeds);
   const { loading, error, seeds } = seedList;
 
+  console.log(seeds);
+
   useEffect(() => {
     dispatch(listMySeeds());
   }, [dispatch]);
@@ -20,7 +22,9 @@ const PastSeeds = () => {
         {loading ? (
           <Loader />
         ) : error ? (
-          <Message>Error while fetching data <br/> {error}</Message>
+          <Message>
+            Error while fetching data <br /> {error}
+          </Message>
         ) : (
           <div>
             <Table striped bordered hover>

@@ -12,13 +12,11 @@ import {
   ListGroupItem,
   Form,
 } from "react-bootstrap";
-import Loader from "../components/shared/Loader";
-import Message from "../components/shared/Message";
 const ProductDetails = ({ history, match }) => {
   const [qty, setQty] = useState(1);
   const dispatch = useDispatch();
   const productDetails = useSelector((state) => state.productDetails);
-  const { loading, error, product } = productDetails;
+  const { product } = productDetails;
 
   useEffect(() => {
     dispatch(listProductDetails(match.params.id));

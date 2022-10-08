@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { PayPalButton } from "react-paypal-button-v2";
 import axios from "axios";
 import { ORDER_PAY_RESET } from "../constants/orderConstant";
 import { Row, Col, ListGroup, Image, Card } from "react-bootstrap";
@@ -34,6 +33,8 @@ const OrderScreen = ({ match }) => {
     console.log(paymentResult);
     dispatch(payOrder(orderId, paymentResult));
   };
+
+  console.log(successPaymentHandler);
 
   useEffect(() => {
     const addPaypalScript = async () => {
@@ -159,10 +160,11 @@ const OrderScreen = ({ match }) => {
               {!sdkReady ? (
                 <Loader />
               ) : (
-                <PayPalButton
-                  amount={order.totalPrice}
-                  onSuccess={successPaymentHandler}
-                />
+                // <PayPalButton
+                //   amount={order.totalPrice}
+                //   onSuccess={successPaymentHandler}
+                // />
+                <div></div>
               )}
             </ListGroup.Item>
           )}

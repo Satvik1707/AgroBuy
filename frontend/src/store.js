@@ -8,6 +8,7 @@ import {
   getProductByIdReducer,
   addSeedsReducer,
   listMySeedsReducer,
+  editProductReducer,
 } from "./reducers/productReducer";
 import {
   userLoginReducer,
@@ -55,6 +56,7 @@ const reducer = combineReducers({
   createBreeder: createBreederReducer,
   addSeeds: addSeedsReducer,
   listMySeeds: listMySeedsReducer,
+  editProduct: editProductReducer,
 });
 const initialState = {
   // cart: { cartItems: "techinfo" },

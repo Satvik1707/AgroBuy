@@ -1,37 +1,9 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Loader from "../shared/Loader";
-import Message from "../shared/Message";
-import { Button, Table } from "react-bootstrap";
-// import { deliverOrder } from "../../actions/orderAction";
+import React from 'react'
 
 const OrderList = () => {
-  const dispatch = useDispatch();
-  const orderList = useSelector((state) => state.getAllOrders);
-
-  // const { loading, error, order } = orderList;
-  // useEffect(() => {
-  //   dispatch(getAllOrders());
-  // }, [dispatch]);
   return (
-    <>
-      <>
-      <div>
-        <Table>
-          <thead>
-            <tr>
-              <th>Order ID</th>
-              <th>Name</th>
-              <th>Total Amount</th>
-              <th>Date</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-        </Table>
-      </div>
-      </>
-    </>
-  );
-};
+    <div>OrderList</div>
+  )
+}
 
-export default OrderList;
+export default OrderList

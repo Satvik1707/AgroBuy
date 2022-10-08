@@ -37,12 +37,24 @@ export const productDetailsReducer = (
 };
 export const addProductReducer = (state = {}, action) => {
   switch (action.type) {
-    case "ADD_PRODUCT_REQUEST":
-      return { loading: true, products: [] };
-    case "ADD_PRODUCT_SUCCESS":
-      return { loading: false, products: action.payload };
-    case "ADD_PRODUCT_FAILS":
-      return { loading: false, error: action.payload };
+    case "UPDATE_PRODUCT_REQUEST":
+      return { eloading: true, products: [] };
+    case "UPDATE_PRODUCT_SUCCESS":
+      return { eloading: false, products: action.payload };
+    case "UPDATE_PRODUCT_FAILS":
+      return { eloading: false, eerror: action.payload };
+    default:
+      return state;
+  }
+};
+export const editProductReducer = (state = {}, action) => {
+  switch (action.type) {
+    case "UPDATE_PRODUCT_REQUEST":
+      return { loading: true, ...state };
+    case "UPDATE_PRODUCT_SUCCESS":
+      return { updatesuccess: true, updateloading: false };
+    case "UPDATE_PRODUCT_FAILS":
+      return { updateloading: false, updateerror: action.payload };
     default:
       return state;
   }
@@ -62,17 +74,17 @@ export const getProductByIdReducer = (state = {}, action) => {
 };
 
 export const addSeedsReducer = (state = {}, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case "ADD_SEEDS_REQUEST":
-      return {loading: true, ...state};
+      return { loading: true, ...state };
     case "ADD_SEEDS_SUCCESS":
-      return {loading:false, product:action.payload}
+      return { loading: false, product: action.payload };
     case "ADD_SEEDS_FAILS":
-      return {loading:false, error:action.payload}
+      return { loading: false, error: action.payload };
     default:
       return state;
   }
-}
+};
 
 export const listMySeedsReducer = (state = { seeds: [] }, action) => {
   switch (action.type) {

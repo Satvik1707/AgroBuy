@@ -42,22 +42,38 @@ router.post("/products/addproduct", async (req, res) => {
   }
 });
 
-router.get("/products/getproductbyid", async (req, res) => {
+router.post("/products/getproductbyid", async (req, res) => {
   const productid = req.body.id;
-  const product = await Product.findById({ _id: productid });
-  if (product) {
-    res.json({
-      name: res.name,
-      category: res.category,
-      price: res.price,
-      brand: res.brand,
-      iamge: res.image,
-      description: res.description,
-      countInStock: res.countInStock,
-    });
-  } else {
-    res.status(404);
-    throw new Error("User Not Found");
+  try {
+    const product = await Product.findOne({ _id: productid });
+    res.send(product);
+  } catch (error) {
+    res.json({ message: error });
+  }
+});
+
+router.post("/products/updateproduct", async (req, res) => {
+  const product = req.body.updatedProduct;
+  const idnew = req.body.updatedProduct._id;
+  console.log(idnew);
+  console.log("====================================");
+  console.log("====================================");
+  console.log(product);
+  try {
+    const edit = await Product.findOne({ _id: idnew });
+    console.log("hi");
+    console.log(edit);
+    edit.name = product.name;
+    edit.price = product.price;
+    edit.category = product.category;
+    edit.description = product.description;
+    edit.brand = product.brand;
+    edit.countInStock = product.countInStock;
+
+    const new1 = await edit.save();
+    res.status(200).send("Product edited successfully");
+  } catch (error) {
+    res.status(400).json({ message: error });
   }
 });
 

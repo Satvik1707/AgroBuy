@@ -47,7 +47,7 @@ const AdminScreen = (history) => {
         </Col>
         <Col md={10}>
           <Switch>
-            <Route exact path="/admin/editproduct/:id" component={EditProduct} />
+            <Route exact path="/admin/updateproduct/:id" component={EditProduct} />
             <Route exact path="/admin/orderlist" component={OrderList} />
             <Route exact path="/admin/userlist" component={UserList} />
             <Route exact path="/admin/productlist" component={ProductList} />

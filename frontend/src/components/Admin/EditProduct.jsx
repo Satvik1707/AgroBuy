@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Form, Row, Col, Button } from "react-bootstrap";
-import { getProductById } from "../../actions/productActions";
+import { editProduct, getProductById } from "../../actions/productActions";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../shared/Loader";
 import Message from "../shared/Message";
-import Success from "../shared/Success";
 
-const AddNewProduct = ({ match }) => {
+const EditProduct = ({ match }) => {
   const [name, setname] = useState("");
   const [price, setprice] = useState();
   const [image, setimage] = useState("");
@@ -18,15 +17,18 @@ const AddNewProduct = ({ match }) => {
   const dispatch = useDispatch();
 
   const getProductState = useSelector((state) => state.getProductById);
-  const { loading, error, product } = getProductState;
+  const { error, product } = getProductState;
+
+  const updateProductState = useSelector((state) => state.editProduct);
+  const { updateloading } = updateProductState;
 
   useEffect(() => {
     if (product) {
       if (product._id === match.params.id) {
         setname(product.name);
         setprice(product.price);
-        setimage(product.image);
         setdescription(product.description);
+        setimage(product.image);
         setcategory(product.category);
         setbrand(product.brand);
         setquantity(product.countInStock);
@@ -36,11 +38,12 @@ const AddNewProduct = ({ match }) => {
     } else {
       dispatch(getProductById(match.params.id));
     }
-  }, []);
+  }, [product, dispatch, match.params.id]);
 
   const submitForm = (e) => {
     e.preventDefault();
     const editedProduct = {
+      _id: match.params.id,
       name,
       image,
       description,
@@ -49,13 +52,15 @@ const AddNewProduct = ({ match }) => {
       brand,
       countInStock,
     };
-    // dispatch(addProduct(product));
+    dispatch(editProduct(editedProduct));
+    console.log("hi", editedProduct);
   };
 
   return (
     <div>
-      {loading && <Loader />}
+      {updateloading && <Loader />}
       {error && <Message error="Add new product error" />}
+      {/* {name} */}
       <Form onSubmit={submitForm} className="bg-light p-4">
         <Row className="mb-2">
           <Row>
@@ -121,13 +126,24 @@ const AddNewProduct = ({ match }) => {
             />
           </Form.Group>
         </Row>
+        <Row className="mb-2">
+          <Form.Group className="mb-3" controlId="formGridAddress1">
+            <Form.Label>Count In Stock</Form.Label>
+            <Form.Control
+              type="text"
+              value={countInStock}
+              onChange={(e) => setquantity(e.target.value)}
+              placeholder="Count in Stock"
+            />
+          </Form.Group>
+        </Row>
 
         <Button variant="primary" type="submit">
-          Add New
+          Edit Product
         </Button>
       </Form>
     </div>
   );
 };
 
-export default AddNewProduct;
+export default EditProduct;

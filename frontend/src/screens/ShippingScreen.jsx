@@ -12,9 +12,9 @@ const ShippingScreen = ({ history }) => {
   const { shippingAddress } = cart;
 
   const [address, setAddress] = useState(shippingAddress.address);
-  const [city, setCity] = useState(shippingAddress.city);
-  const [postalcode, setPostalcode] = useState(shippingAddress.postalcode);
-  const [country, setCountry] = useState(shippingAddress.country);
+  const [city] = useState(shippingAddress.city);
+  const [postalcode] = useState(shippingAddress.postalcode);
+  const [country] = useState(shippingAddress.country);
 
   const submitHandler = (e) => {
     e.preventDefault();

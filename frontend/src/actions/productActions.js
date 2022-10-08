@@ -61,11 +61,24 @@ export const addProduct = (product) => async (dispatch) => {
     const response = await axios.post("/api/products/addproduct", { product });
     console.log(response);
     swal("Product added Successfully");
-    // window.location.href = "/admin/productlist";
     dispatch({ type: "ADD_PRODUCT_SUCCESS", payload: response.data });
+    window.location.href = "/admin/productlist";
   } catch (error) {
     dispatch({ type: "ADD_PRODUCT_FAILS", payload: error });
     swal("Error while adding product");
+  }
+};
+
+export const editProduct = (updatedProduct) => async (dispatch) => {
+  dispatch({ type: "UPDATE_PRODUCT_REQUEST" });
+  try {
+    const response = await axios.post("/api/products/updateproduct", { updatedProduct });
+    swal("Product edited Successfully");
+    dispatch({ type: "UPDATE_PRODUCT_SUCCESS", payload: response.data });
+    window.location.href = "/admin/productlist";
+  } catch (error) {
+    dispatch({ type: "UPDATE_PRODUCT_FAILS", payload: error });
+    swal("Error while editing product");
   }
 };
 
@@ -77,17 +90,6 @@ export const getProductById = (id) => async (dispatch) => {
     dispatch({ type: "GET_PRODUCTBYID_SUCCESS", payload: response.data });
   } catch (error) {
     dispatch({ type: "GET_PRODUCTBYID_FAILS", payload: error });
-  }
-};
-
-export const editProduct = (product) => async (dispatch) => {
-  dispatch({ type: "EDIT_PRODUCT_REQUEST" });
-  try {
-    const response = await axios.post("/api/products/editproduct");
-    console.log(response);
-  } catch (error) {
-    dispatch({ type: "EDIT_PRODUCT_FAILS", payload: error });
-    swal("Error while updating product");
   }
 };
 
