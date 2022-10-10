@@ -117,3 +117,16 @@ export const getBreederByIdReducer = (state = {}, action) => {
       return state;
   }
 };
+
+export const createTransportReducer = (state = { user: {} }, action) => {
+  switch (action.type) {
+    case "CREATE_TRANSPORT_REQUEST":
+      return { ...state, loading: true };
+    case "CREATE_TRANSPORT_SUCCESS":
+      return { loading: false, user: action.payload, success: true };
+    case "CREATE_TRANSPORT_FAILS":
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};

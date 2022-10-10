@@ -18,6 +18,8 @@ const registerUser = asyncHandler(async (req, res) => {
       email: user.email,
       isAdmin: user.isAdmin,
       token: generateToken(user._id),
+      isBreeder: user.isBreeder,
+      isTransport: user.isTransport,
     });
   } else {
     res.status(404);
@@ -36,6 +38,7 @@ const authController = asyncHandler(async (req, res) => {
       isAdmin: user.isAdmin,
       token: generateToken(user._id),
       isBreeder: user.isBreeder,
+      isTransport: user.isTransport,
     });
   } else {
     res.status(401);
@@ -51,6 +54,8 @@ const getUserProfile = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
+      isBreeder: user.isBreeder,
+      isTransport: user.isTransport,
     });
   } else {
     res.status(404);
@@ -79,7 +84,6 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     throw new Error("user Not Found!");
   }
 });
-
 
 module.exports = {
   authController,

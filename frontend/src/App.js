@@ -17,6 +17,7 @@ import OrderScreen from "./screens/OrderScreen";
 import AdminScreen from "./screens/AdminScreen";
 import BreederScreen from "./screens/BreederScreen";
 import TransporterScreen from "./screens/TransporterScreen";
+import FCIScreen from "./screens/FCIScreen";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path="/product/:id" component={ProductDetails} />
           <Route path="/breeder" component={BreederScreen} />
           <Route path="/transport" component={TransporterScreen} />
+          <Route path="/fci" component={FCIScreen}/>
           <Route path="/" component={HomeScreen} exact />
         </Container>
       </main>

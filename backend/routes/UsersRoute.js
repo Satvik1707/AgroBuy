@@ -8,6 +8,7 @@ const {
 const { protect } = require("../middlewares/authMiddleware");
 const User = require("../models/UserModel");
 const Breeder = require("../models/BreederModel");
+const Transport = require("../models/TransportModel");
 
 const router = express.Router();
 
@@ -75,6 +76,31 @@ router.post("/getbreederbyid", async (req, res) => {
     res.json({ user });
   } catch (error) {
     res.json({ messaage: error });
+  }
+});
+
+router.post("/createtransport", async (req, res) => {
+  const { user } = req.body;
+  const idnew = user._id;
+  try {
+    const loggedin = await User.findOne({ id: idnew });
+    const newBreeder = new Transport({
+      user: loggedin.id,
+      email: loggedin.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      address1: user.address1,
+      address2: user.address2,
+      cityName: user.city,
+      state: user.state,
+      pincode: user.pincode,
+      phoneNo: user.phnNo,
+    });
+    const createbreeder = await newBreeder.save();
+    res.status(201).json(createbreeder);
+    res.status(201).send("Breeder registration request sent");
+  } catch (error) {
+    res.json({ message: error.data });
   }
 });
 

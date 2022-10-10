@@ -183,3 +183,16 @@ export const getBreederById = (id) => async (dispatch) => {
     dispatch({type:"GET_BREEDER_FAILS", payload: error})
   }
 }
+
+export const transportRegister = (user) => async (dispatch) => {
+  dispatch({ type: "CREATE_TRANSPORT_REQUEST" });
+  try {
+    const res = await axios.post("/api/users/createtransport", { user });
+    dispatch({ type: "CREATE_TRANSPORT_SUCCESS", payload: res.data });
+    console.log(res);
+    window.location.href = "/transport";
+    swal("Transporter Application sent successfully");
+  } catch (error) {
+    dispatch({ type: "CREATE_TRANSPORT_FAILS", payload: error });
+  }
+};

@@ -1,10 +1,10 @@
 import React from "react";
 import RegistrationForm from "../components/Transporter/RegistrationForm";
-import BreederForm from "../components/Breeder/BreederForm";
-import PastSeeds from "../components/Breeder/PastSeeds";
 import { Container, Row, Col } from "react-bootstrap";
 import { Switch, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
+import OpenBids from "../components/Transporter/OpenBids";
+import MyBids from "../components/Transporter/MyBids";
 
 const BreederScreen = () => {
   const userState = useSelector((state) => state.userLogin);
@@ -46,8 +46,8 @@ const BreederScreen = () => {
               path="/transport/register"
               component={RegistrationForm}
             />
-            <Route exact path="/transport/allbids" component={BreederForm} />
-            <Route exact path="/transport/mybids" component={PastSeeds} />
+            <Route exact path="/transport/allbids" component={OpenBids} />
+            <Route exact path="/transport/mybids" component={MyBids} />
           </Switch>
         </Col>
       </Row>
