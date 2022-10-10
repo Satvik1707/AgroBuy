@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { Form, Row, Col, Button } from "react-bootstrap";
 import { breederRegister } from "../../actions/userAction";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
-const RegistrationForm = () => {
+const RegistrationForm = ({ match }) => {
   const [firstName, setfirstName] = useState("");
   const [lastName, setlastName] = useState();
   const [address1, setaddress1] = useState("");
@@ -12,12 +13,17 @@ const RegistrationForm = () => {
   const [state, setstate] = useState("");
   const [pincode, setpincode] = useState("");
   const [phnNo, setphnNo] = useState("");
-  const [email, setemail] = useState("");
+  const [email] = useState("");
   const dispatch = useDispatch();
+
+  const userState = useSelector((state) => state.userLogin);
+  const { userInfo } = userState;
+  const id = userInfo._id;
 
   const submitForm = (e) => {
     e.preventDefault();
     const register = {
+      id,
       email,
       firstName,
       lastName,
@@ -54,17 +60,6 @@ const RegistrationForm = () => {
               />
             </Form.Group>
           </Row>
-        </Row>
-        <Row>
-          <Form.Group as={Col} controlId="formGridZip">
-            <Form.Label>Email Address</Form.Label>
-            <Form.Control
-              type="text"
-              value={email}
-              onChange={(e) => setemail(e.target.value)}
-              placeholder="Email"
-            />
-          </Form.Group>
         </Row>
         <Row>
           <Form.Group as={Col} className="mb-3" controlId="formGridAddress2">

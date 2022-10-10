@@ -23,6 +23,7 @@ export const logout = () => (dispatch) => {
   dispatch({ type: ORDER_LIST_MY_RESET });
   dispatch({ type: USER_DETAILS_RESET });
   dispatch({ type: USER_LOGOUT });
+  window.location.href = "/";
 };
 
 export const login = (email, password) => async (dispatch) => {
@@ -162,12 +163,23 @@ export const deleteUser = (userid) => async (dispatch) => {
 export const breederRegister = (user) => async (dispatch) => {
   dispatch({ type: "CREATE_BREEDER_REQUEST" });
   try {
-    const res = await axios.post("/api/users/createbreeder", {user});
-    swal("sdfgh");
+    const res = await axios.post("/api/users/createbreeder", { user });
     dispatch({ type: "CREATE_BREEDER_SUCCESS", payload: res.data });
     console.log(res);
-    // window.location.href = "/breeder";
+    window.location.href = "/breeder";
+    swal("Breeder Application sent successfully");
   } catch (error) {
     dispatch({ type: "CREATE_BREEDER_FAILS", payload: error });
   }
 };
+
+export const getBreederById = (id) => async (dispatch) => {
+  dispatch({type: "GET_BREEDER_REQUEST"});
+  try {
+    const res = await axios.post("/api/users/getbreederbyid", {id});
+    // console.log(res);
+    dispatch({type: "GET_BREEDER_SUCCESS", payload: res.data});
+  } catch (error) {
+    dispatch({type:"GET_BREEDER_FAILS", payload: error})
+  }
+}

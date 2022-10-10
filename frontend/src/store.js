@@ -17,6 +17,7 @@ import {
   userUpdateProfileReducer,
   getAllUserReducer,
   createBreederReducer,
+  getBreederByIdReducer,
 } from "./reducers/userReducers";
 import { cartReducer } from "./reducers/cartReducer";
 import {
@@ -57,6 +58,7 @@ const reducer = combineReducers({
   addSeeds: addSeedsReducer,
   listMySeeds: listMySeedsReducer,
   editProduct: editProductReducer,
+  getBreederById: getBreederByIdReducer,
 });
 const initialState = {
   // cart: { cartItems: "techinfo" },

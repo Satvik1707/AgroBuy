@@ -1,5 +1,5 @@
 import React from "react";
-import RegistrationForm from "../components/Breeder/RegistrationForm";
+import RegistrationForm from "../components/Transporter/RegistrationForm";
 import BreederForm from "../components/Breeder/BreederForm";
 import PastSeeds from "../components/Breeder/PastSeeds";
 import { Container, Row, Col } from "react-bootstrap";

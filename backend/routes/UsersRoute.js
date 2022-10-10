@@ -45,9 +45,12 @@ router.post("/deleteuser", async (req, res) => {
 
 router.post("/createbreeder", async (req, res) => {
   const { user } = req.body;
+  const idnew = user._id;
   try {
+    const loggedin = await User.findOne({ id: idnew });
     const newBreeder = new Breeder({
-      email: user.email,
+      user: loggedin.id,
+      email: loggedin.email,
       firstName: user.firstName,
       lastName: user.lastName,
       address1: user.address1,
@@ -62,6 +65,16 @@ router.post("/createbreeder", async (req, res) => {
     res.status(201).send("Breeder registration request sent");
   } catch (error) {
     res.json({ message: error.data });
+  }
+});
+
+router.post("/getbreederbyid", async (req, res) => {
+  const userid = req.body.id;
+  try {
+    const user = await Breeder.findOne({ user: userid });
+    res.json({ user });
+  } catch (error) {
+    res.json({ messaage: error });
   }
 });
 

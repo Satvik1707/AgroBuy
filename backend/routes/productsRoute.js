@@ -10,6 +10,12 @@ const Seed = require("../models/SeedModel");
 //GET ROUTE FOR ALL PRODUCTS
 router.route("/products").get(getProducts);
 
+router.get("/products/myseeds", async (req, res) => {
+  console.log(req);
+  const seeds = await Seed.find({ breeder: "6341c2a642861b3e7536d9a3" });
+  res.json(seeds);
+});
+
 //GET ROUTE FOR SINGLE PRODUCT
 router.route("/products/:id").get(getProduct);
 
@@ -79,8 +85,10 @@ router.post("/products/updateproduct", async (req, res) => {
 
 router.post("/products/addseeds", async (req, res) => {
   const { product } = req.body;
+  console.log(req.body);
   try {
     const addSeed = new Seed({
+      breeder: product.id,
       seedName: product.name,
       quantity: product.quantity,
       date: product.date,
@@ -94,11 +102,6 @@ router.post("/products/addseeds", async (req, res) => {
   } catch (error) {
     res.json({ message: error.data });
   }
-});
-
-router.get("/products/myseeds", async (req, res) => {
-  const seeds = await Seed.find({});
-  res.json(seeds);
 });
 
 module.exports = router;

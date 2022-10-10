@@ -6,6 +6,7 @@ import Message from "../components/shared/Message";
 import Loader from "../components/shared/Loader";
 import { getUserDetails, updateUserProfile } from "../actions/userAction";
 import { listMyOrders } from "../actions/orderAction";
+import { Link } from "react-router-dom";
 
 const ProfileScreen = ({ location, history }) => {
   const [name, setName] = useState("");
@@ -50,7 +51,7 @@ const ProfileScreen = ({ location, history }) => {
     <>
       <Row>
         <Col md={3}>
-          <h1>Update Information</h1>
+          <h4>Update Information</h4>
           {error && <Message varient="danger">{error}</Message>}
           {success && <Message variant="success">Profile Updated</Message>}
           {loading && <Loader />}
@@ -92,13 +93,20 @@ const ProfileScreen = ({ location, history }) => {
                 onChange={(e) => setConfirmPassword(e.target.value)}
               ></Form.Control>
             </Form.Group>
+            <Row><div>
+              </div></Row>
+              <Row>
+                <div>
+                  <p></p>
+                </div>
+              </Row>
             <Button type="submit" varient="primary">
               Update
             </Button>
           </Form>
         </Col>
         <Col md={9}>
-          <h1>My Orders</h1>
+          <h4>My Orders</h4>
           {loadingOrders ? (
             <Loader />
           ) : errorOrders ? (
@@ -152,6 +160,25 @@ const ProfileScreen = ({ location, history }) => {
             </Table>
           )}
         </Col>
+      </Row>
+      <Row>
+        <div>
+          <p><br></br></p>
+          <h4>Other Links</h4>
+          <Link to = '/breeder'>
+          <Button variant="dark">Breeder Panel</Button>
+          </Link>
+          <Row>
+            <div>
+              <p>
+                
+              </p>
+            </div>
+          </Row>
+          <Link to = '/transport'>
+          <Button variant="dark">Transport Panel</Button>
+          </Link>
+        </div>
       </Row>
     </>
   );

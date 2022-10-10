@@ -113,10 +113,13 @@ export const listMySeeds = () => async (dispatch, getState) => {
     } = getState();
     const config = {
       headers: {
+        "Content-Type": "application/json",
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
+    
     const { data } = await axios.get("/api/products/myseeds", config);
+    console.log(data);
     dispatch({ type: "SEEDS_LIST_MY_SUCCESS", payload: data });
   } catch (error) {
     dispatch({

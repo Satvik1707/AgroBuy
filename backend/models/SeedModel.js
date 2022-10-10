@@ -2,11 +2,11 @@ const mongoose = require("mongoose");
 
 const SeedSchema = mongoose.Schema(
   {
-    // breeder: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     required: true,
-    //     ref: "Breeder",
-    //   },
+    breeder: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "Breeder",
+      },
     seedName: {
       type: String,
       required: true,

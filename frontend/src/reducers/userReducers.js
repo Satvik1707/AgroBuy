@@ -104,3 +104,16 @@ export const createBreederReducer = (state = { user: {} }, action) => {
       return state;
   }
 };
+
+export const getBreederByIdReducer = (state = {}, action) => {
+  switch (action.type) {
+    case "GET_BREEDER_REQUEST":
+      return { loading: true, ...state };
+    case "GET_BREEDER_SUCCESS":
+      return { loading: false, user: action.payload };
+    case "GET_BREEDER_FAILS":
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};

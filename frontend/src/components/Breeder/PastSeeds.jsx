@@ -1,55 +1,47 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { listMySeeds } from "../../actions/productActions";
-import { useEffect } from "react";
-import Loader from "../shared/Loader";
-import Message from "../shared/Message";
 import { Table } from "react-bootstrap";
+import { useEffect } from "react";
+import { listMySeeds } from "../../actions/productActions";
 
 const PastSeeds = () => {
   const dispatch = useDispatch();
-  const seedList = useSelector((state) => state.listMySeeds);
-  const { loading, error, seeds } = seedList;
 
-  console.log(seeds);
+  const mySeedList = useSelector((state) => state.listMySeeds);
+  const { seeds } = mySeedList;
 
   useEffect(() => {
     dispatch(listMySeeds());
   }, [dispatch]);
+
   return (
     <>
       <>
-        {loading ? (
-          <Loader />
-        ) : error ? (
-          <Message>
-            Error while fetching data <br /> {error}
-          </Message>
-        ) : (
-          <div>
-            <Table striped bordered hover>
-              <thead>
-                <tr>
-                  <th>User ID</th>
-                  <th>Name</th>
-                  <th>E-mail address</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              {/* <tbody>
-                {seeds &&
-                  seeds.map((user) => (
-                    <tr>
-                      <td>{user._id}</td>
-                      <td>{user.name}</td>
-                      <td>{user.email}</td>
-                      <td></td>
-                    </tr>
-                  ))}
-              </tbody> */}
-            </Table>
-          </div>
-        )}
+        <div>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>Seed Name</th>
+                <th>Quantity</th>
+                <th>Date of Harvesting</th>
+                <th>Place of Harvesting</th>
+                <th>Seeds Submission Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {seeds &&
+                seeds.map((xyz) => (
+                  <tr>
+                    <td>{xyz.seedName}</td>
+                    <td>{xyz.quantity}</td>
+                    <td>{xyz.date.slice(0,10)}</td>
+                    <td>{xyz.place}</td>
+                    <td>{xyz.updatedAt.slice(0,10)}</td>
+                  </tr>
+                ))}
+            </tbody>
+          </Table>
+        </div>
       </>
     </>
   );
