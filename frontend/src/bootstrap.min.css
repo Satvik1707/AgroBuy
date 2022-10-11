@@ -3172,7 +3172,7 @@ fieldset:disabled .btn {
   --bs-dropdown-link-disabled-color: #888;
   --bs-dropdown-item-padding-x: 1rem;
   --bs-dropdown-item-padding-y: 0.25rem;
-  --bs-dropdown-header-color: #555;
+  --bs-dropdown-header-color: #ffffff;
   --bs-dropdown-header-padding-x: 1rem;
   --bs-dropdown-header-padding-y: 0.5rem;
   position: absolute;

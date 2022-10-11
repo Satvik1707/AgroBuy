@@ -19,6 +19,8 @@ const RegistrationForm = ({ match }) => {
   const userState = useSelector((state) => state.userLogin);
   const { userInfo } = userState;
   const id = userInfo._id;
+  
+  console.log(id);
 
   const submitForm = (e) => {
     e.preventDefault();

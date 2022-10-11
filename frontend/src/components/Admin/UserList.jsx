@@ -15,7 +15,7 @@ const UserList = () => {
     dispatch(getAllUser());
   }, [dispatch]);
   return (
-    <>
+    <>``
       <>
         {loading ? (
           <Loader />

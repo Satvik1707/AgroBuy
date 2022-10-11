@@ -130,3 +130,48 @@ export const createTransportReducer = (state = { user: {} }, action) => {
       return state;
   }
 };
+
+export const breederListReducer = (state = { users: [] }, action) => {
+  switch (action.type) {
+    case "GET_BREEDER_LIST_REQUEST":
+      return {
+        users: [],
+        loading: true,
+      };
+    case "GET_BREEDER_LIST_SUCCESS":
+      return {
+        ...state,
+        users: action.payload,
+        loading: false,
+      };
+    case "GET_BREEDER_LIST_FAILS":
+      return {
+        error: action.payload,
+        loading: false,
+      };
+    default:
+      return state;
+  }
+};
+export const transportListReducer = (state = { users: [] }, action) => {
+  switch (action.type) {
+    case "GET_TRANSPORT_LIST_REQUEST":
+      return {
+        users: [],
+        loading: true,
+      };
+    case "GET_TRANSPORT_LIST_SUCCESS":
+      return {
+        ...state,
+        users: action.payload,
+        loading: false,
+      };
+    case "GET_TRANSPORT_LIST_FAILS":
+      return {
+        error: action.payload,
+        loading: false,
+      };
+    default:
+      return state;
+  }
+};

@@ -14,7 +14,7 @@ const FCIScreen = () => {
     <div>
       <Row>
         <h1 className="text-center p-2 ">FCI Panel</h1>
-      </Row>
+
       <br />
       <Col md={2}>
         <div>
@@ -63,6 +63,7 @@ const FCIScreen = () => {
           </div>
         </div>
       </Col>
+
       <Col md={10}>
         <Switch>
           <Route exact path="/fci/breederlist" component={BreederList} />
@@ -74,6 +75,7 @@ const FCIScreen = () => {
           <Route exact path="/fci/allbids" component={AllBids} />
         </Switch>
       </Col>
+    </Row>
     </div>
   );
 };

@@ -149,14 +149,14 @@ export const getAllUser = () => async (dispatch) => {
   }
 };
 
-export const deleteUser = (userid) => async (dispatch) => {
+export const getBreederById = (id) => async (dispatch) => {
+  dispatch({ type: "GET_BREEDER_REQUEST" });
   try {
-    const res = await axios.post("/api/users/deleteuser", { userid });
-    console.log(res);
-    swal("User deleted Successfully", "success");
-    window.location.href = "/admin/userlist";
+    const res = await axios.post("/api/users/getbreederbyid", { id });
+    // console.log(res);
+    dispatch({ type: "GET_BREEDER_SUCCESS", payload: res.data });
   } catch (error) {
-    swal("Error while deleting user");
+    dispatch({ type: "GET_BREEDER_FAILS", payload: error });
   }
 };
 
@@ -173,17 +173,6 @@ export const breederRegister = (user) => async (dispatch) => {
   }
 };
 
-export const getBreederById = (id) => async (dispatch) => {
-  dispatch({type: "GET_BREEDER_REQUEST"});
-  try {
-    const res = await axios.post("/api/users/getbreederbyid", {id});
-    // console.log(res);
-    dispatch({type: "GET_BREEDER_SUCCESS", payload: res.data});
-  } catch (error) {
-    dispatch({type:"GET_BREEDER_FAILS", payload: error})
-  }
-}
-
 export const transportRegister = (user) => async (dispatch) => {
   dispatch({ type: "CREATE_TRANSPORT_REQUEST" });
   try {
@@ -194,5 +183,82 @@ export const transportRegister = (user) => async (dispatch) => {
     swal("Transporter Application sent successfully");
   } catch (error) {
     dispatch({ type: "CREATE_TRANSPORT_FAILS", payload: error });
+  }
+};
+
+export const breederList = () => async (dispatch) => {
+  dispatch({ type: "GET_BREEDER_LIST_REQUEST" });
+  try {
+    const res = await axios.get("/api/users/breederlist");
+    dispatch({ type: "GET_BREEDER_LIST_SUCCESS", payload: res.data });
+    // console.log(res);
+  } catch (error) {
+    dispatch({ type: "GET_BREEDER_LIST_FAILS", payload: error });
+  }
+};
+
+export const denyBreeder = (id) => async (dispatch) => {
+  try {
+    await axios.post("/api/users/denybreeder", { id });
+    dispatch({ type: "BREEDER_DENY_SUCCESS" });
+    swal("Application deleted", "success");
+    window.location.href = "/fci/breederlist";
+  } catch (error) {
+    swal("Error while deleting application");
+  }
+};
+
+export const deleteUser = (userid) => async (dispatch) => {
+  try {
+    await axios.post("/api/users/deleteuser", { userid });
+    // console.log(res);
+    swal("User deleted Successfully", "success");
+    window.location.href = "/admin/userlist";
+  } catch (error) {
+    swal("Error while deleting user");
+  }
+};
+
+export const approveBreeder = (id) => async (dispatch) => {
+  try {
+    await axios.post("/api/users/approvebreeder", { id });
+    // console.log(res);
+    swal("Application accepted");
+    window.location.href = "/fci/breederlist";
+  } catch (error) {
+    swal("Error while accepting application");
+  }
+};
+
+export const transportList = () => async (dispatch) => {
+  dispatch({ type: "GET_TRANSPORT_LIST_REQUEST" });
+  try {
+    const res = await axios.get("/api/users/transportlist");
+    dispatch({ type: "GET_TRANSPORT_LIST_SUCCESS", payload: res.data });
+    // console.log(res);
+  } catch (error) {
+    dispatch({ type: "GET_TRANSPORT_LIST_FAILS", payload: error });
+  }
+};
+
+export const denyTransport = (id) => async (dispatch) => {
+  try {
+    await axios.post("/api/users/denytransport", { id });
+    dispatch({ type: "TRANSPORT_DENY_SUCCESS" });
+    swal("Application deleted", "success");
+    window.location.href = "/fci/transportlist";
+  } catch (error) {
+    swal("Error while deleting application");
+  }
+};
+
+export const approveTransport = (id) => async (dispatch) => {
+  try {
+    await axios.post("/api/users/approvetransport", { id });
+    // console.log(res);
+    swal("Application accepted");
+    window.location.href = "/fci/transportlist";
+  } catch (error) {
+    swal("Error while accepting application");
   }
 };

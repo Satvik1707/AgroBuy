@@ -93,13 +93,14 @@ const ProfileScreen = ({ location, history }) => {
                 onChange={(e) => setConfirmPassword(e.target.value)}
               ></Form.Control>
             </Form.Group>
-            <Row><div>
-              </div></Row>
-              <Row>
-                <div>
-                  <p></p>
-                </div>
-              </Row>
+            <Row>
+              <div></div>
+            </Row>
+            <Row>
+              <div>
+                <p></p>
+              </div>
+            </Row>
             <Button type="submit" varient="primary">
               Update
             </Button>
@@ -163,21 +164,45 @@ const ProfileScreen = ({ location, history }) => {
       </Row>
       <Row>
         <div>
-          <p><br></br></p>
+          <p>
+            <br></br>
+          </p>
           <h4>Other Links</h4>
-          <Link to = '/breeder'>
-          <Button variant="dark">Breeder Panel</Button>
+          <Link to="/breeder">
+            <Button variant="dark">Breeder Panel</Button>
           </Link>
           <Row>
             <div>
-              <p>
-                
-              </p>
+              <p></p>
             </div>
           </Row>
-          <Link to = '/transport'>
-          <Button variant="dark">Transport Panel</Button>
+          <Link to="/transport">
+            <Button variant="dark">Transport Panel</Button>
           </Link>
+          <Row>
+            <div>
+              <p></p>
+            </div>
+          </Row>
+          {userInfo.isAdmin ? (
+            <Link to="/admin">
+              <Button variant="dark">Admin Panel</Button>
+            </Link>
+          ) : (
+            <div></div>
+          )}
+          <Row>
+            <div>
+              <p></p>
+            </div>
+          </Row>
+          {userInfo.isFCI ? (
+            <Link to="/fci">
+              <Button variant="dark">FCI Panel</Button>
+            </Link>
+          ) : (
+            <div></div>
+          )}
         </div>
       </Row>
     </>

@@ -20,6 +20,7 @@ const registerUser = asyncHandler(async (req, res) => {
       token: generateToken(user._id),
       isBreeder: user.isBreeder,
       isTransport: user.isTransport,
+      isFCI: user.isFCI,
     });
   } else {
     res.status(404);
@@ -39,6 +40,7 @@ const authController = asyncHandler(async (req, res) => {
       token: generateToken(user._id),
       isBreeder: user.isBreeder,
       isTransport: user.isTransport,
+      isFCI: user.isFCI,
     });
   } else {
     res.status(401);
@@ -56,6 +58,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
       isAdmin: user.isAdmin,
       isBreeder: user.isBreeder,
       isTransport: user.isTransport,
+      isFCI: user.isFCI,
     });
   } else {
     res.status(404);

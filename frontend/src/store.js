@@ -19,6 +19,8 @@ import {
   createBreederReducer,
   getBreederByIdReducer,
   createTransportReducer,
+  breederListReducer,
+  transportListReducer,
 } from "./reducers/userReducers";
 import { cartReducer } from "./reducers/cartReducer";
 import {
@@ -61,6 +63,8 @@ const reducer = combineReducers({
   editProduct: editProductReducer,
   getBreederById: getBreederByIdReducer,
   createTransport: createTransportReducer,
+  breederList: breederListReducer,
+  transportList: transportListReducer,
 });
 const initialState = {
   // cart: { cartItems: "techinfo" },

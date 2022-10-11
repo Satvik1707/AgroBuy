@@ -61,10 +61,6 @@ router.post("/products/getproductbyid", async (req, res) => {
 router.post("/products/updateproduct", async (req, res) => {
   const product = req.body.updatedProduct;
   const idnew = req.body.updatedProduct._id;
-  console.log(idnew);
-  console.log("====================================");
-  console.log("====================================");
-  console.log(product);
   try {
     const edit = await Product.findOne({ _id: idnew });
     console.log("hi");
