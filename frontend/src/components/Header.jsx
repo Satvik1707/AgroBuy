@@ -3,6 +3,7 @@ import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../actions/userAction";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const userLogin = useSelector((state) => state.userLogin);
@@ -18,7 +19,9 @@ const Header = () => {
       <Navbar bg="dark" expand="lg" variant="dark" collapseOnSelect>
         <Container>
           <LinkContainer to="/">
-            <Navbar.Brand><h2>Agrobuy</h2></Navbar.Brand>
+            <Navbar.Brand>
+              <h2>Agrobuy</h2>
+            </Navbar.Brand>
           </LinkContainer>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -30,10 +33,34 @@ const Header = () => {
                   &nbsp; Cart
                 </Nav.Link>
               </LinkContainer>
-              {userInfo ? (
+              {userInfo.isAdmin ? (
+                <NavDropdown title={userInfo.name}>
+                  <LinkContainer to="/admin">
+                    <NavDropdown.Item>Admin Panel</NavDropdown.Item>
+                  </LinkContainer>
+                  <NavDropdown.Item onClick={logoutHandler}>
+                    Logout
+                  </NavDropdown.Item>
+                </NavDropdown>
+              ) : userInfo.isFCI ? (
+                <NavDropdown title={userInfo.name}>
+                  <LinkContainer to="/fci">
+                    <NavDropdown.Item>FCI Panel</NavDropdown.Item>
+                  </LinkContainer>
+                  <NavDropdown.Item onClick={logoutHandler}>
+                    Logout
+                  </NavDropdown.Item>
+                </NavDropdown>
+              ) : userInfo ? (
                 <NavDropdown title={userInfo.name}>
                   <LinkContainer to="/profile">
                     <NavDropdown.Item>Profile</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to="/breeder">
+                    <NavDropdown.Item>Breeder Panel</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to="/transport">
+                    <NavDropdown.Item>Transport Panel</NavDropdown.Item>
                   </LinkContainer>
                   <NavDropdown.Item onClick={logoutHandler}>
                     Logout

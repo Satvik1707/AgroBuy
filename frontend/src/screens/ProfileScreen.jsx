@@ -162,49 +162,6 @@ const ProfileScreen = ({ location, history }) => {
           )}
         </Col>
       </Row>
-      <Row>
-        <div>
-          <p>
-            <br></br>
-          </p>
-          <h4>Other Links</h4>
-          <Link to="/breeder">
-            <Button variant="dark">Breeder Panel</Button>
-          </Link>
-          <Row>
-            <div>
-              <p></p>
-            </div>
-          </Row>
-          <Link to="/transport">
-            <Button variant="dark">Transport Panel</Button>
-          </Link>
-          <Row>
-            <div>
-              <p></p>
-            </div>
-          </Row>
-          {userInfo.isAdmin ? (
-            <Link to="/admin">
-              <Button variant="dark">Admin Panel</Button>
-            </Link>
-          ) : (
-            <div></div>
-          )}
-          <Row>
-            <div>
-              <p></p>
-            </div>
-          </Row>
-          {userInfo.isFCI ? (
-            <Link to="/fci">
-              <Button variant="dark">FCI Panel</Button>
-            </Link>
-          ) : (
-            <div></div>
-          )}
-        </div>
-      </Row>
     </>
   );
 };

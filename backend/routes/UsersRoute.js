@@ -43,6 +43,24 @@ router.post("/deleteuser", async (req, res) => {
     res.status(404).json({ message: error.stack });
   }
 });
+router.post("/deletebreeder", async (req, res) => {
+  const userid = req.body.userid;
+  try {
+    await User.findOneAndDelete({ _id: userid });
+    res.status(200).send("User deleted");
+  } catch (error) {
+    res.status(404).json({ message: error.stack });
+  }
+});
+router.post("/deletetransport", async (req, res) => {
+  const userid = req.body.userid;
+  try {
+    await User.findOneAndDelete({ _id: userid });
+    res.status(200).send("User deleted");
+  } catch (error) {
+    res.status(404).json({ message: error.stack });
+  }
+});
 
 router.post("/createbreeder", async (req, res) => {
   const { user } = req.body;
@@ -144,6 +162,23 @@ router.post("/denytransport", async (req, res) => {
   }
 });
 
+router.post("/approvebreeder", async (req, res) => {
+  try {
+    const userid = req.body.id;
+    // console.log(userid);
+    const breeder = await Breeder.findOne({ _id: userid });
+    const user = breeder.user;
+    // console.log(user);
+    const userupdate = await User.findOne({ _id: user });
+    // console.log(userupdate);
+    userupdate.isBreeder = true;
+    await userupdate.save();
+    await Breeder.findOneAndDelete({ _id: userid });
+    res.status(200).send("Breeder accepted");
+  } catch (error) {
+    res.status(400).json({ message: error });
+  }
+});
 router.post("/approvetransport", async (req, res) => {
   try {
     const userid = req.body.id;
@@ -159,6 +194,25 @@ router.post("/approvetransport", async (req, res) => {
     res.status(200).send("Breeder accepted");
   } catch (error) {
     res.status(400).json({ message: error });
+  }
+});
+
+router.get("/getallbreeders", async (req, res) => {
+  try {
+    const users = await User.find({ isBreeder: true });
+    // console.log(users);
+    res.send(users);
+  } catch (error) {
+    res.status(404).json({ message: error });
+  }
+});
+router.get("/getalltransport", async (req, res) => {
+  try {
+    const users = await User.find({ isTransport: true });
+    // console.log(users);
+    res.send(users);
+  } catch (error) {
+    res.status(404).json({ message: error });
   }
 });
 

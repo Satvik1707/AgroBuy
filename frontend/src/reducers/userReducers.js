@@ -175,3 +175,48 @@ export const transportListReducer = (state = { users: [] }, action) => {
       return state;
   }
 };
+
+export const getAllBreederReducer = (state = { users: [] }, action) => {
+  switch (action.type) {
+    case "ALL_USERS_REQUEST":
+      return {
+        users: [],
+        loading: true,
+      };
+    case "ALL_USERS_SUCCESS":
+      return {
+        ...state,
+        users: action.payload,
+        loading: false,
+      };
+    case "ALL_USERS_FAILS":
+      return {
+        error: action.payload,
+        loading: false,
+      };
+    default:
+      return state;
+  }
+};
+export const getAllTransportReducer = (state = { users: [] }, action) => {
+  switch (action.type) {
+    case "ALL_USERS_REQUEST":
+      return {
+        users: [],
+        loading: true,
+      };
+    case "ALL_USERS_SUCCESS":
+      return {
+        ...state,
+        users: action.payload,
+        loading: false,
+      };
+    case "ALL_USERS_FAILS":
+      return {
+        error: action.payload,
+        loading: false,
+      };
+    default:
+      return state;
+  }
+};
