@@ -33,25 +33,7 @@ const Header = () => {
                   &nbsp; Cart
                 </Nav.Link>
               </LinkContainer>
-              {userInfo.isAdmin ? (
-                <NavDropdown title={userInfo.name}>
-                  <LinkContainer to="/admin">
-                    <NavDropdown.Item>Admin Panel</NavDropdown.Item>
-                  </LinkContainer>
-                  <NavDropdown.Item onClick={logoutHandler}>
-                    Logout
-                  </NavDropdown.Item>
-                </NavDropdown>
-              ) : userInfo.isFCI ? (
-                <NavDropdown title={userInfo.name}>
-                  <LinkContainer to="/fci">
-                    <NavDropdown.Item>FCI Panel</NavDropdown.Item>
-                  </LinkContainer>
-                  <NavDropdown.Item onClick={logoutHandler}>
-                    Logout
-                  </NavDropdown.Item>
-                </NavDropdown>
-              ) : userInfo ? (
+              {userInfo ? (
                 <NavDropdown title={userInfo.name}>
                   <LinkContainer to="/profile">
                     <NavDropdown.Item>Profile</NavDropdown.Item>
