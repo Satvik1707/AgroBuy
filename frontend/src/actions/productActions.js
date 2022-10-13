@@ -100,6 +100,7 @@ export const addSeeds = (product) => async (dispatch) => {
   try {
     const response = await axios.post("/api/products/addseeds", { product });
     dispatch({ type: "ADD_SEEDS_SUCCESS", payload: response.data });
+    // window.location.href ="/breeder";
   } catch (error) {
     dispatch({ type: "ADD_SEEDS_FAILS", payload: error.stack });
   }
@@ -160,5 +161,16 @@ export const denySeeds = (seedid) => async (dispatch) => {
     dispatch({ type: "SEED_DENIED", payload: res.data });
   } catch (error) {
     dispatch({ type: "SEED_DENY_FAILS", payload: error.stack });
+  }
+};
+
+export const getApprovedSeeds = () => async (dispatch) => {
+  dispatch({ type: "ALL_APPROVED_SEEDS_REQUEST" });
+  try {
+    const response = await axios.get("/api/products/getapprovedseeds");
+    console.log(response.data);
+    dispatch({ type: "ALL_APPROVED_SEEDS_SUCCESS", payload: response.data });
+  } catch (error) {
+    dispatch({ type: "ALL_APPROVED_SEEDS_FAILS", payload: error.stack });
   }
 };

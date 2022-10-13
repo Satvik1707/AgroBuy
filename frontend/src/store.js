@@ -11,6 +11,7 @@ import {
   editProductReducer,
   getAllSeedReducer,
   seedListReducer,
+  allSeedReducer
 } from "./reducers/productReducer";
 import {
   userLoginReducer,
@@ -73,6 +74,7 @@ const reducer = combineReducers({
   getAllTransport: getAllTransportReducer,
   seedList: seedListReducer,
   getAllSeed: getAllSeedReducer,
+  allSeed: allSeedReducer,
 });
 const initialState = {
   cart: {
