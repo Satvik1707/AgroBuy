@@ -23,7 +23,7 @@ const AdminScreen = (history) => {
         <h1 className="text-center p-2 ">Admin Panel</h1>
         <br />
         <Col md={2}>
-          <div className="btn-group-vertical" role="group">
+          <div className="d-grid gap-2" role="group">
             <a href="/admin/orderlist" className="btn btn-primary ">
               Order List
             </a>

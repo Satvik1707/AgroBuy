@@ -9,6 +9,8 @@ import {
   addSeedsReducer,
   listMySeedsReducer,
   editProductReducer,
+  getAllSeedReducer,
+  seedListReducer,
 } from "./reducers/productReducer";
 import {
   userLoginReducer,
@@ -69,6 +71,8 @@ const reducer = combineReducers({
   transportList: transportListReducer,
   getAllBreeder: getAllBreederReducer,
   getAllTransport: getAllTransportReducer,
+  seedList: seedListReducer,
+  getAllSeed: getAllSeedReducer,
 });
 const initialState = {
   cart: {

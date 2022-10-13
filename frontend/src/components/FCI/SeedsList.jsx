@@ -1,22 +1,17 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { seedList, approveSeeds, denySeeds } from "../../actions/productActions";
 import Loader from "../shared/Loader";
 import Message from "../shared/Message";
 import { Table } from "react-bootstrap";
-import {
-  breederList,
-  denyBreeder,
-  approveBreeder,
-} from "../../actions/userAction";
 
-const BreederList = () => {
+const SeedsList = () => {
   const dispatch = useDispatch();
-  const breederListState = useSelector((state) => state.breederList);
-  const { loading, error, users } = breederListState;
-
+  const seedListState = useSelector((state) => state.seedList);
+  const { loading, error, seeds } = seedListState;
+  console.log(seedListState);
   useEffect(() => {
-    dispatch(breederList());
+    dispatch(seedList());
   }, [dispatch]);
 
   return (
@@ -31,28 +26,28 @@ const BreederList = () => {
             <Table striped bordered hover>
               <thead>
                 <tr>
-                  <th>First Name</th>
-                  <th>Last Name</th>
-                  <th>City</th>
-                  <th>State</th>
-                  <th>Phone No</th>
+                  <th>Seed Name</th>
+                  <th>Quantity</th>
+                  <th>Place of Harvesting</th>
+                  <th>Date of Harvesting</th>
+                  <th>Request Submission Date</th>
                   <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
-                {users &&
-                  users.map((user) => (
+                {seeds &&
+                  seeds.map((seed) => (
                     <tr>
-                      <td>{user.firstName}</td>
-                      <td>{user.lastName}</td>
-                      <td>{user.cityName}</td>
-                      <td>{user.state}</td>
-                      <td>{user.phoneNo}</td>
+                      <td>{seed.seedName}</td>
+                      <td>{seed.quantity}</td>
+                      <td>{seed.place}</td>
+                      <td>{seed.date.slice(0,10)}</td>
+                      <td>{seed.updatedAt.slice(0,10)}</td>
                       <td>
                         <button
                           className="btn btn-success"
                           onClick={() => {
-                            dispatch(approveBreeder(user._id));
+                            dispatch(approveSeeds(seed._id));
                           }}
                         >
                           Approve
@@ -61,7 +56,7 @@ const BreederList = () => {
                         <button
                           className="btn btn-danger"
                           onClick={() => {
-                            dispatch(denyBreeder(user._id));
+                            dispatch(denySeeds(seed._id));
                           }}
                         >
                           Deny
@@ -78,4 +73,4 @@ const BreederList = () => {
   );
 };
 
-export default BreederList;
+export default SeedsList;

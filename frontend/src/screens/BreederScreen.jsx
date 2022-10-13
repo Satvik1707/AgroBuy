@@ -17,7 +17,7 @@ const BreederScreen = () => {
         <br />
         <Col md={2}>
           {!userInfo.isBreeder ? (
-            <div className="btn-group-vertical" role="group">
+            <div className="d-grid gap-2" role="group">
               <a href="/breeder/register" className="btn btn-primary ">
                 Registration Form
               </a>
@@ -25,13 +25,13 @@ const BreederScreen = () => {
             </div>
           ) : (
             <div>
-              <div className="btn-group-vertical" role="group">
+              <div className="d-grid gap-2" role="group">
                 <a href="/breeder/breederForm" className="btn btn-primary ">
                   Breeder's Form
                 </a>
                 <br />
               </div>
-              <div className="btn-group-vertical" role="group">
+              <div className="d-grid gap-2" role="group">
                 <a href="/breeder/myseeds" className="btn btn-primary ">
                   Past Seeds
                 </a>

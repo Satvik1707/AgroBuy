@@ -108,3 +108,48 @@ export const listMySeedsReducer = (state = { seeds: [] }, action) => {
       return state;
   }
 };
+
+export const getAllSeedReducer = (state = { users: [] }, action) => {
+  switch (action.type) {
+    case "ALL_SEEDS_REQUEST":
+      return {
+        users: [],
+        loading: true,
+      };
+    case "ALL_SEEDS_SUCCESS":
+      return {
+        ...state,
+        users: action.payload,
+        loading: false,
+      };
+    case "ALL_SEEDS_FAILS":
+      return {
+        error: action.payload,
+        loading: false,
+      };
+    default:
+      return state;
+  }
+};
+
+export const seedListReducer = (state = { seeds: [] }, action) => {
+  switch (action.type) {
+    case "SEEDS_LIST_REQUEST":
+      return {
+        seeds: [],
+        loading: true,
+      };
+    case "SEEDS_LIST_SUCCESS":
+      return {
+        seeds: action.payload,
+        loading: false,
+      };
+    case "SEEDS_LIST_FAILS":
+      return {
+        error: action.payload,
+        loading: false,
+      };
+    default:
+      return state;
+  }
+};

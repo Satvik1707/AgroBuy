@@ -10,6 +10,35 @@ const Seed = require("../models/SeedModel");
 //GET ROUTE FOR ALL PRODUCTS
 router.route("/products").get(getProducts);
 
+router.get("/products/getallseeds", async (req, res) => {
+  try {
+    const seeds = await Seed.find({ isApproved: false });
+    res.send(seeds);
+  } catch (error) {
+    res.status(400).json({ message: error });
+  }
+});
+
+router.post("/products/approveseed", async (req, res) => {
+  try {
+    const seedid = req.body.seedid;
+    const seed = await Seed.findOne({ _id: seedid });
+    console.log(seed);
+    seed.isApproved = true;
+    await seed.save();
+    swal("Seed Approved");
+  } catch (error) {
+    swal("Error while processing request");
+  }
+});
+
+router.post("/products/denyseed", async (req, res) => {
+  const seedid = req.body.seedid;
+  console.log(seedid);
+  const seed = await Seed.findOneAndDelete({ _id: seedid });
+  swal("Seed Denied");
+});
+
 router.get("/products/myseeds", async (req, res) => {
   console.log(req);
   const seeds = await Seed.find({ breeder: "6341c2a642861b3e7536d9a3" });

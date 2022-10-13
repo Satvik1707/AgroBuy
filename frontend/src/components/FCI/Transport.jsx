@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteTransport, deleteUser, getAllTransport } from "../../actions/userAction";
+import { deleteTransport, getAllTransport } from "../../actions/userAction";
 import Loader from "../shared/Loader";
 import Message from "../shared/Message";
 import { AiFillDelete } from "react-icons/ai";

@@ -72,7 +72,9 @@ export const addProduct = (product) => async (dispatch) => {
 export const editProduct = (updatedProduct) => async (dispatch) => {
   dispatch({ type: "UPDATE_PRODUCT_REQUEST" });
   try {
-    const response = await axios.post("/api/products/updateproduct", { updatedProduct });
+    const response = await axios.post("/api/products/updateproduct", {
+      updatedProduct,
+    });
     swal("Product edited Successfully");
     dispatch({ type: "UPDATE_PRODUCT_SUCCESS", payload: response.data });
     window.location.href = "/admin/productlist";
@@ -117,7 +119,7 @@ export const listMySeeds = () => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    
+
     const { data } = await axios.get("/api/products/myseeds", config);
     console.log(data);
     dispatch({ type: "SEEDS_LIST_MY_SUCCESS", payload: data });
@@ -129,5 +131,34 @@ export const listMySeeds = () => async (dispatch, getState) => {
           ? error.response.data.message
           : error.message,
     });
+  }
+};
+
+export const seedList = () => async (dispatch) => {
+  dispatch({ type: "SEEDS_LIST_REQUEST" });
+  try {
+    const res = await axios.get("/api/products/getallseeds");
+    dispatch({ type: "SEEDS_LIST_SUCCESS", payload: res.data });
+  } catch (error) {
+    dispatch({ type: "SEEDS_LIST_FAILS", payload: error.stack });
+  }
+};
+
+export const approveSeeds = (seedid) => async (dispatch) => {
+  try {
+    const res = await axios.post("/api/products/approveseed", { seedid });
+    console.log(res);
+    dispatch({ type: "SEEDS_APPROVED", payload: res.data });
+  } catch (error) {
+    dispatch({ type: "SEEDS_APPOVED_FAILS", payload: error.stack });
+  }
+};
+
+export const denySeeds = (seedid) => async (dispatch) => {
+  try {
+    const res = await axios.post("/api/products/denyseed", { seedid });
+    dispatch({ type: "SEED_DENIED", payload: res.data });
+  } catch (error) {
+    dispatch({ type: "SEED_DENY_FAILS", payload: error.stack });
   }
 };

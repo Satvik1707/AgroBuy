@@ -17,7 +17,7 @@ const BreederScreen = () => {
         <br />
         <Col md={2}>
           {!userInfo.isTransport ? (
-            <div className="btn-group-vertical" role="group">
+            <div className="d-grid gap-2" role="group">
               <a href="/transport/register" className="btn btn-primary ">
                 Registration Form
               </a>
@@ -25,13 +25,13 @@ const BreederScreen = () => {
             </div>
           ) : (
             <div>
-              <div className="btn-group-vertical" role="group">
+              <div className="d-grid gap-2" role="group">
                 <a href="/transport/allbids" className="btn btn-primary ">
                   All Open bids
                 </a>
                 <br />
               </div>
-              <div className="btn-group-vertical" role="group">
+              <div className="d-grid gap-2" role="group">
                 <a href="/transport/mybids" className="btn btn-primary ">
                   My bids
                 </a>

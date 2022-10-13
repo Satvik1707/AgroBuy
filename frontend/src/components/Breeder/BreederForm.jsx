@@ -4,7 +4,6 @@ import { addSeeds } from "../../actions/productActions";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../shared/Loader";
 import Message from "../shared/Message";
-import Success from "../shared/Success";
 import { getBreederById } from "../../actions/userAction";
 
 const BreederForm = () => {
@@ -15,21 +14,21 @@ const BreederForm = () => {
   const [category, setcategory] = useState("");
 
   const addProductState = useSelector((state) => state.addSeeds);
-  const { loading, error, success } = addProductState;
+  const { loading, error } = addProductState;
 
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.userLogin);
   const { userInfo } = userState;
 
   const getBreederState = useSelector((state) => state.getBreederById);
-  // console.log(getBreederState.user);
+  console.log(getBreederState.user);
   // const {_id} = getBreederState.user;
   const id = "6341c2a642861b3e7536d9a3";
   // const id = _id;
 
   useEffect(() => {
     dispatch(getBreederById(userInfo._id));
-  }, []);
+  }, [dispatch, userInfo._id]);
 
   const submitForm = (e) => {
     e.preventDefault();

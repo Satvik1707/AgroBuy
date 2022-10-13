@@ -6,7 +6,6 @@ import Message from "../components/shared/Message";
 import Loader from "../components/shared/Loader";
 import { getUserDetails, updateUserProfile } from "../actions/userAction";
 import { listMyOrders } from "../actions/orderAction";
-import { Link } from "react-router-dom";
 
 const ProfileScreen = ({ location, history }) => {
   const [name, setName] = useState("");
