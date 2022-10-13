@@ -26,9 +26,7 @@ router.post("/products/approveseed", async (req, res) => {
     console.log(seed);
     seed.isApproved = true;
     await seed.save();
-    swal("Seed Approved");
   } catch (error) {
-    swal("Error while processing request");
   }
 });
 
@@ -36,7 +34,6 @@ router.post("/products/denyseed", async (req, res) => {
   const seedid = req.body.seedid;
   console.log(seedid);
   const seed = await Seed.findOneAndDelete({ _id: seedid });
-  swal("Seed Denied");
 });
 
 router.get("/products/myseeds", async (req, res) => {

@@ -149,6 +149,7 @@ export const approveSeeds = (seedid) => async (dispatch) => {
     const res = await axios.post("/api/products/approveseed", { seedid });
     console.log(res);
     dispatch({ type: "SEEDS_APPROVED", payload: res.data });
+    window.location.href = '/fci/seedslist'
   } catch (error) {
     dispatch({ type: "SEEDS_APPOVED_FAILS", payload: error.stack });
   }
@@ -158,6 +159,7 @@ export const denySeeds = (seedid) => async (dispatch) => {
   try {
     const res = await axios.post("/api/products/denyseed", { seedid });
     dispatch({ type: "SEED_DENIED", payload: res.data });
+    window.location.href = "/fci/seedlist";
   } catch (error) {
     dispatch({ type: "SEED_DENY_FAILS", payload: error.stack });
   }
