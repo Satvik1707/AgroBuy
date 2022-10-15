@@ -10,6 +10,15 @@ const Seed = require("../models/SeedModel");
 //GET ROUTE FOR ALL PRODUCTS
 router.route("/products").get(getProducts);
 
+router.get("/products/getapprovedseeds", async (req, res) => {
+  try {
+    const seeds = await Seed.find({ isApproved: true });
+    res.status(201).send(seeds);
+  } catch (error) {
+    res.json({ message: error.data });
+  }
+});
+
 router.get("/products/getallseeds", async (req, res) => {
   try {
     const seeds = await Seed.find({ isApproved: false });
@@ -26,8 +35,7 @@ router.post("/products/approveseed", async (req, res) => {
     console.log(seed);
     seed.isApproved = true;
     await seed.save();
-  } catch (error) {
-  }
+  } catch (error) {}
 });
 
 router.post("/products/denyseed", async (req, res) => {

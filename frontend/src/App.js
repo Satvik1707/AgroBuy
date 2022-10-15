@@ -23,8 +23,8 @@ function App() {
   return (
     <Router>
       <Header />
-      <main className="my-3">
-        <Container>
+      <main className="my-3 bg-image">
+        <Container >
           <Route path="/order/:id" component={OrderScreen} />
           <Route path="/admin" component={AdminScreen} />
           <Route path="/login" component={LoginScreen} />
@@ -37,7 +37,7 @@ function App() {
           <Route path="/product/:id" component={ProductDetails} />
           <Route path="/breeder" component={BreederScreen} />
           <Route path="/transport" component={TransporterScreen} />
-          <Route path="/fci" component={FCIScreen}/>
+          <Route path="/fci" component={FCIScreen} />
           <Route path="/" component={HomeScreen} exact />
         </Container>
       </main>

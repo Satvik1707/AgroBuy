@@ -15,14 +15,18 @@ const Header = () => {
 
   return (
     <>
-      <Navbar bg="dark" expand="lg" variant="dark" collapseOnSelect>
+      <Navbar
+        bg="dark"
+        expand="lg"
+        variant="dark"
+        collapseOnSelect
+      >
         <Container>
           <LinkContainer to="/">
             <Navbar.Brand>
               <h2>Agrobuy</h2>
             </Navbar.Brand>
           </LinkContainer>
-
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">

@@ -1,8 +1,19 @@
-#my-3{
-    height: 100px;
-    width: 100px;
+#my-3 {
+  height: 100px;
+  width: 100px;
 }
-img{
-    height: 272px;
-    width: 272px;
-  }
+img {
+  height: 272px;
+  width: 272px;
+}
+
+.bg-image {
+  /* background-image: url("https://inc42.com/wp-content/uploads/2022/06/farmers-feature-760x570.png"); */
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+
+.custom {
+  width: 100px;
+}
