@@ -1,16 +1,70 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../shared/Loader";
 import Message from "../shared/Message";
-import { Table } from "react-bootstrap";
+import { Button, Col, Form, Modal, Table } from "react-bootstrap";
 import { openBidList } from "../../actions/productActions";
-import { Link } from "react-router-dom";
-
+import Popup from 'reactjs-popup';
+import './popup.css';
 const OpenBids = () => {
   const dispatch = useDispatch();
   const breederListState = useSelector((state) => state.openBidList);
   const { loading, error, bids } = breederListState;
+  const id = "6341c2a642861b3e7536d9a3";
+  const [modalShow, setModalShow] = React.useState(false);
+  const [amount, setamount] = useState("");
+
+  const handleClose = () => setModalShow(false);
+  const handleShow = () => setModalShow(true);
+
+  const submitForm = (e) => {
+    e.preventDefault();
+    const bid = {
+      id,
+      amount
+    }
+    console.log(bid);
+  }
+
+  const SubmitandClose = (e) => {
+    submitForm(e);
+    handleClose();
+  }
+
+  function MyVerticallyCenteredModal(props) {
+    return (
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            Enter Bid Amount
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+          <Form.Group as={Col} controlId="formGridEmail">
+            <Form.Label>Bid Amount</Form.Label>
+            <Form.Control
+              type="text"
+              value={amount}
+              onChange={(e) => setamount(e.target.value)}
+              placeholder="Bid Amount"
+            />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={SubmitandClose}>Submit</Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  }
+
 
   useEffect(() => {
     dispatch(openBidList());
@@ -48,9 +102,14 @@ const OpenBids = () => {
                       <td>{user.shipmentcost}</td>
                       <td>{user.endTime.slice(0, 10)}</td>
                       <td>
-                        <input type="number" placeholder="Enter Bid Amount" />
-                        &nbsp;
-                          <button onClick={dispatch()}>Bid</button>
+                        <Button variant="primary" onClick={() => setModalShow(true)}>
+                          Bid
+                        </Button>
+
+                        <MyVerticallyCenteredModal
+                          show={modalShow}
+                          onHide={() => setModalShow(false)}
+                        />
                       </td>
                     </tr>
                   ))}
