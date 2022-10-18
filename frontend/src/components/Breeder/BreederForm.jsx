@@ -46,7 +46,7 @@ const BreederForm = () => {
     <div>
       {loading && <Loader />}
       {error && <Message error="Add new product error" />}
-      <Form onSubmit={submitForm} className="bg-light p-4">
+      <Form onSubmit={submitForm} className="bg-dark">
         <Row className="mb-2">
           <Form.Group as={Col} controlId="formGridEmail">
             <Form.Label>Seed Name</Form.Label>

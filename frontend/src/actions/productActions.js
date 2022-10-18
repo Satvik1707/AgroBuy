@@ -150,7 +150,7 @@ export const approveSeeds = (seedid) => async (dispatch) => {
     const res = await axios.post("/api/products/approveseed", { seedid });
     console.log(res);
     dispatch({ type: "SEEDS_APPROVED", payload: res.data });
-    window.location.href = '/fci/seedslist'
+    window.location.href = "/fci/seedslist";
   } catch (error) {
     dispatch({ type: "SEEDS_APPOVED_FAILS", payload: error.stack });
   }
@@ -174,5 +174,39 @@ export const getApprovedSeeds = () => async (dispatch) => {
     dispatch({ type: "ALL_APPROVED_SEEDS_SUCCESS", payload: response.data });
   } catch (error) {
     dispatch({ type: "ALL_APPROVED_SEEDS_FAILS", payload: error.stack });
+  }
+};
+
+export const createBid = (bid) => async (dispatch) => {
+  dispatch({ type: "CREATE_BID_REQUEST" });
+  try {
+    const response = await axios.post("/api/products/createbid", { bid });
+    console.log(response.data);
+    swal("Bid Created Successfully");
+    dispatch({ type: "CREATE_BID_SUCCESS", payload: response.data });
+    window.location.href = "/fci/openbids";
+  } catch (error) {
+    dispatch({ type: "CREATE_BID_FAILS", payload: error.stack });
+  }
+};
+
+export const openBidList = () => async (dispatch) => {
+  dispatch({ type: "LIST_BID_REQUEST" });
+  try {
+    const response = await axios.get("/api/products/allopen");
+    console.log(response.data);
+    dispatch({ type: "LIST_BID_SUCCESS", payload: response.data });
+  } catch (error) {
+    dispatch({ type: "LIST_BID_FAILS", payload: error.stack });
+  }
+};
+export const closedBidList = () => async (dispatch) => {
+  dispatch({ type: "LIST_CLOSEDBID_REQUEST" });
+  try {
+    const response = await axios.get("/api/products/allclosed");
+    console.log(response.data);
+    dispatch({ type: "LIST_CLOSEDBID_SUCCESS", payload: response.data });
+  } catch (error) {
+    dispatch({ type: "LIST_CLOSEDBID_FAILS", payload: error.stack });
   }
 };

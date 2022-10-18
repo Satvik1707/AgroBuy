@@ -6,9 +6,73 @@ const {
 const Product = require("../models/ProductModel");
 const router = express.Router();
 const Seed = require("../models/SeedModel");
+const Bid = require("../models/BidModel");
 
 //GET ROUTE FOR ALL PRODUCTS
 router.route("/products").get(getProducts);
+
+router.post("/products/createbid", async (req, res) => {
+  const {
+    sourceAdd1,
+    sourceAdd2,
+    sourceCity,
+    sourceState,
+    sourcePincode,
+    destAdd1,
+    destAdd2,
+    destCity,
+    destState,
+    destPincode,
+    shipName,
+    shipCost,
+    shipQuantity,
+    endDate,
+    bidders,
+  } = req.body.bid;
+
+  try {
+    const newBid = new Bid({
+      sourceaddress1: sourceAdd1,
+      sourceaddress2: sourceAdd2,
+      sourcecity: sourceCity,
+      sourcestate: sourceState,
+      sourcepinCode: sourcePincode,
+      destinationaddress1: destAdd1,
+      destinationaddress2: destAdd2,
+      destinationcity: destCity,
+      destinationstate: destState,
+      destinationpinCode: destPincode,
+      shipmentname: shipName,
+      shipmentquantity: shipQuantity,
+      shipmentcost: shipCost,
+      noOfBidders: bidders,
+      endTime: endDate,
+    });
+    const createbid = await newBid.save();
+    res.send(createbid);
+  } catch (error) {
+    res.json({ message: error });
+  }
+});
+
+router.get("/products/allopen", async (req, res) => {
+  try {
+    let currdate = new Date();
+    const bids = await Bid.find({endTime: {$gte: currdate }});
+    res.status(201).send(bids);
+  } catch (error) {
+    res.json({ message: error.data });
+  }
+});
+router.get("/products/allclosed", async (req, res) => {
+  try {
+    let currdate = new Date();
+    const bids = await Bid.find({endTime: {$lt: currdate }});
+    res.status(201).send(bids);
+  } catch (error) {
+    res.json({ message: error.data });
+  }
+});
 
 router.get("/products/getapprovedseeds", async (req, res) => {
   try {

@@ -11,7 +11,10 @@ import {
   editProductReducer,
   getAllSeedReducer,
   seedListReducer,
-  allSeedReducer
+  allSeedReducer,
+  createBidReducer,
+  openBidListReducer,
+  closedBidListReducer,
 } from "./reducers/productReducer";
 import {
   userLoginReducer,
@@ -75,6 +78,9 @@ const reducer = combineReducers({
   seedList: seedListReducer,
   getAllSeed: getAllSeedReducer,
   allSeed: allSeedReducer,
+  createBid: createBidReducer,
+  openBidList: openBidListReducer,
+  closedBidList: closedBidListReducer,
 });
 const initialState = {
   cart: {

@@ -79,7 +79,7 @@ const FCIScreen = (history) => {
           </div>
           <div className="d-grid gap-2" role="group">
             <a href="/fci/allbids" className="btn btn-primary ">
-              All Bids
+              Closed Bids
             </a>
             <br />
           </div>

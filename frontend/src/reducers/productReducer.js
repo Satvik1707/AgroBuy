@@ -176,3 +176,68 @@ export const allSeedReducer = (state = { seeds: [] }, action) => {
       return state;
   }
 };
+
+export const createBidReducer = (state = { bid: [] }, action) => {
+  switch (action.type) {
+    case "CREATE_BID_REQUEST":
+      return {
+        bid: [],
+        loading: false,
+      };
+    case "CREATE_BID_SUCCESS":
+      return {
+        bid: action.payload,
+        loading: false,
+      };
+    case "CREATE_BID_FAILS":
+      return {
+        error: action.payload,
+        loading: false,
+      };
+    default:
+      return state;
+  }
+};
+
+export const openBidListReducer = (state = { bids: [] }, action) => {
+  switch (action.type) {
+    case "LIST_BID_REQUEST":
+      return {
+        bids: [],
+        loading: false,
+      };
+    case "LIST_BID_SUCCESS":
+      return {
+        bids: action.payload,
+        loading: false,
+      };
+    case "LIST_BID_FAILS":
+      return {
+        error: action.payload,
+        loading: false,
+      };
+    default:
+      return state;
+  }
+};
+export const closedBidListReducer = (state = { bids: [] }, action) => {
+  switch (action.type) {
+    case "LIST_CLOSEDBID_REQUEST":
+      return {
+        bids: [],
+        loading: false,
+      };
+    case "LIST_CLOSEDBID_SUCCESS":
+      return {
+        bids: action.payload,
+        loading: false,
+      };
+    case "LIST_CLOSEDBID_FAILS":
+      return {
+        error: action.payload,
+        loading: false,
+      };
+    default:
+      return state;
+  }
+};
