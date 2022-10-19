@@ -13,12 +13,12 @@ const OpenBids = () => {
   const { loading, error, bids } = breederListState;
   const id = "6341c2a642861b3e7536d9a3";
   const [modalShow, setModalShow] = React.useState(false);
-  const [amount, setamount] = useState("");
+  
 
   const handleClose = () => setModalShow(false);
   const handleShow = () => setModalShow(true);
 
-  const submitForm = (e) => {
+  const submitForm = (e, amount) => {
     e.preventDefault();
     const bid = {
       id,
@@ -27,12 +27,13 @@ const OpenBids = () => {
     console.log(bid);
   }
 
-  const SubmitandClose = (e) => {
-    submitForm(e);
+  const SubmitandClose = (e, amount) => {
+    submitForm(e,amount);
     handleClose();
   }
 
   function MyVerticallyCenteredModal(props) {
+    const [amount, setamount] = useState("");
     return (
       <Modal
         {...props}
@@ -59,7 +60,7 @@ const OpenBids = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={SubmitandClose}>Submit</Button>
+          <Button onClick={(e) => SubmitandClose(e,{amount})}>Submit</Button>
         </Modal.Footer>
       </Modal>
     );
