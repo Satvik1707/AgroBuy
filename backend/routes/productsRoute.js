@@ -96,7 +96,7 @@ router.post("/products/approveseed", async (req, res) => {
   try {
     const seedid = req.body.seedid;
     const seed = await Seed.findOne({ _id: seedid });
-    console.log(seed);
+
     seed.isApproved = true;
     await seed.save();
   } catch (error) {}
@@ -104,12 +104,12 @@ router.post("/products/approveseed", async (req, res) => {
 
 router.post("/products/denyseed", async (req, res) => {
   const seedid = req.body.seedid;
-  console.log(seedid);
+
   const seed = await Seed.findOneAndDelete({ _id: seedid });
 });
 
 router.get("/products/myseeds", async (req, res) => {
-  console.log(req);
+
   const seeds = await Seed.find({ breeder: "6341c2a642861b3e7536d9a3" });
   res.json(seeds);
 });
@@ -138,7 +138,7 @@ router.post("/products/addproduct", async (req, res) => {
       category: product.category,
       description: product.description,
     });
-    console.log(newProduct);
+
     await newProduct.save();
     res.status(201).send("New Product Added");
   } catch (error) {
@@ -161,8 +161,6 @@ router.post("/products/updateproduct", async (req, res) => {
   const idnew = req.body.updatedProduct._id;
   try {
     const edit = await Product.findOne({ _id: idnew });
-    console.log("hi");
-    console.log(edit);
     edit.name = product.name;
     edit.price = product.price;
     edit.category = product.category;
@@ -179,7 +177,6 @@ router.post("/products/updateproduct", async (req, res) => {
 
 router.post("/products/addseeds", async (req, res) => {
   const { product } = req.body;
-  console.log(req.body);
   try {
     const addSeed = new Seed({
       breeder: product.id,

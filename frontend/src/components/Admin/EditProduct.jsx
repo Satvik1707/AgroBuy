@@ -53,7 +53,7 @@ const EditProduct = ({ match }) => {
       countInStock,
     };
     dispatch(editProduct(editedProduct));
-    console.log("hi", editedProduct);
+    // console.log("hi", editedProduct);
   };
 
   return (

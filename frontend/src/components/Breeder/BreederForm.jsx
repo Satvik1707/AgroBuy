@@ -21,7 +21,7 @@ const BreederForm = () => {
   const { userInfo } = userState;
 
   const getBreederState = useSelector((state) => state.getBreederById);
-  console.log(getBreederState.user);
+  // console.log(getBreederState.user);
   // const {_id} = getBreederState.user;
   const id = "6341c2a642861b3e7536d9a3";
   // const id = _id;

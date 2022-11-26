@@ -24,7 +24,7 @@ const OpenBids = () => {
       id,
       amount
     }
-    console.log(bid);
+    // console.log(bid);
   }
 
   const SubmitandClose = (e, amount) => {

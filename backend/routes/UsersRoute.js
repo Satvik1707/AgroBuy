@@ -30,7 +30,6 @@ router
 router.get("/getallusers", async (req, res) => {
   try {
     const users = await User.find({});
-    // console.log(users);
     res.send(users);
   } catch (error) {
     res.status(404).json({ message: error });
@@ -103,10 +102,10 @@ router.post("/getbreederbyid", async (req, res) => {
 router.post("/createtransport", async (req, res) => {
   const { user } = req.body;
   const idnew = user.id;
-  console.log(idnew);
+
   try {
     const loggedin = await User.findOne({ _id: idnew });
-    console.log(loggedin);
+
     const newBreeder = new Transport({
       user: loggedin.id,
       email: loggedin.email,
@@ -130,7 +129,7 @@ router.post("/createtransport", async (req, res) => {
 router.get("/breederlist", async (req, res) => {
   try {
     const users = await Breeder.find({});
-    // console.log(users);
+
     res.send(users);
   } catch (error) {
     res.status(404).json({ message: error });
@@ -139,7 +138,7 @@ router.get("/breederlist", async (req, res) => {
 router.get("/transportlist", async (req, res) => {
   try {
     const users = await Transport.find({});
-    // console.log(users);
+
     res.send(users);
   } catch (error) {
     res.status(404).json({ message: error });

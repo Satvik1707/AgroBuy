@@ -9,7 +9,7 @@ const SeedsList = () => {
   const dispatch = useDispatch();
   const seedListState = useSelector((state) => state.seedList);
   const { loading, error, seeds } = seedListState;
-  console.log(seedListState);
+  // console.log(seedListState);
   useEffect(() => {
     dispatch(seedList());
   }, [dispatch]);

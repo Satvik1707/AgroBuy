@@ -49,7 +49,7 @@ export const deleteProduct = (id) => async (dispatch) => {
     const res = await axios.post("/api/products/deleteproduct", { id });
     swal("Product deleted Successfully");
     window.location.href = "/admin/productlist";
-    console.log(res);
+    // console.log(res);
   } catch (error) {
     swal("Error while deleting product");
   }
@@ -59,7 +59,7 @@ export const addProduct = (product) => async (dispatch) => {
   dispatch({ type: "ADD_PRODUCT_REQUEST" });
   try {
     const response = await axios.post("/api/products/addproduct", { product });
-    console.log(response);
+    // console.log(response);
     swal("Product added Successfully");
     dispatch({ type: "ADD_PRODUCT_SUCCESS", payload: response.data });
     window.location.href = "/admin/productlist";
@@ -88,7 +88,7 @@ export const getProductById = (id) => async (dispatch) => {
   dispatch({ type: "GET_PRODUCTBYID_REQUEST" });
   try {
     const response = await axios.post("/api/products/getproductbyid", { id });
-    console.log(response);
+    // console.log(response);
     dispatch({ type: "GET_PRODUCTBYID_SUCCESS", payload: response.data });
   } catch (error) {
     dispatch({ type: "GET_PRODUCTBYID_FAILS", payload: error });
@@ -122,7 +122,7 @@ export const listMySeeds = () => async (dispatch, getState) => {
     };
 
     const { data } = await axios.get("/api/products/myseeds", config);
-    console.log(data);
+    // console.log(data);
     dispatch({ type: "SEEDS_LIST_MY_SUCCESS", payload: data });
   } catch (error) {
     dispatch({
@@ -148,7 +148,7 @@ export const seedList = () => async (dispatch) => {
 export const approveSeeds = (seedid) => async (dispatch) => {
   try {
     const res = await axios.post("/api/products/approveseed", { seedid });
-    console.log(res);
+    // console.log(res);
     dispatch({ type: "SEEDS_APPROVED", payload: res.data });
     window.location.href = "/fci/seedslist";
   } catch (error) {
@@ -170,7 +170,7 @@ export const getApprovedSeeds = () => async (dispatch) => {
   dispatch({ type: "ALL_APPROVED_SEEDS_REQUEST" });
   try {
     const response = await axios.get("/api/products/getapprovedseeds");
-    console.log(response.data);
+    // console.log(response.data);
     dispatch({ type: "ALL_APPROVED_SEEDS_SUCCESS", payload: response.data });
   } catch (error) {
     dispatch({ type: "ALL_APPROVED_SEEDS_FAILS", payload: error.stack });
@@ -181,7 +181,7 @@ export const createBid = (bid) => async (dispatch) => {
   dispatch({ type: "CREATE_BID_REQUEST" });
   try {
     const response = await axios.post("/api/products/createbid", { bid });
-    console.log(response.data);
+    // console.log(response.data);
     swal("Bid Created Successfully");
     dispatch({ type: "CREATE_BID_SUCCESS", payload: response.data });
     window.location.href = "/fci/openbids";
@@ -194,7 +194,7 @@ export const openBidList = () => async (dispatch) => {
   dispatch({ type: "LIST_BID_REQUEST" });
   try {
     const response = await axios.get("/api/products/allopen");
-    console.log(response.data);
+    // console.log(response.data);
     dispatch({ type: "LIST_BID_SUCCESS", payload: response.data });
   } catch (error) {
     dispatch({ type: "LIST_BID_FAILS", payload: error.stack });
@@ -204,7 +204,7 @@ export const closedBidList = () => async (dispatch) => {
   dispatch({ type: "LIST_CLOSEDBID_REQUEST" });
   try {
     const response = await axios.get("/api/products/allclosed");
-    console.log(response.data);
+    // console.log(response.data);
     dispatch({ type: "LIST_CLOSEDBID_SUCCESS", payload: response.data });
   } catch (error) {
     dispatch({ type: "LIST_CLOSEDBID_FAILS", payload: error.stack });

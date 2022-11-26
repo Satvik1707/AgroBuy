@@ -142,7 +142,7 @@ export const getAllUser = () => async (dispatch) => {
   dispatch({ type: "ALL_USERS_REQUEST" });
   try {
     const response = await axios.get("/api/users/getallusers");
-    console.log(response.data);
+    // console.log(response.data);
     dispatch({ type: "ALL_USERS_SUCCESS", payload: response.data });
   } catch (error) {
     dispatch({ type: "ALL_USERS_FAILS", payload: error.stack });
@@ -165,7 +165,7 @@ export const breederRegister = (user) => async (dispatch) => {
   try {
     const res = await axios.post("/api/users/createbreeder", { user });
     dispatch({ type: "CREATE_BREEDER_SUCCESS", payload: res.data });
-    console.log(res);
+    // console.log(res);
     window.location.href = "/breeder";
     swal("Breeder Application sent successfully");
   } catch (error) {
@@ -178,7 +178,7 @@ export const transportRegister = (user) => async (dispatch) => {
   try {
     const res = await axios.post("/api/users/createtransport", { user });
     dispatch({ type: "CREATE_TRANSPORT_SUCCESS", payload: res.data });
-    console.log(res);
+    // console.log(res);
     window.location.href = "/transport";
     swal("Transporter Application sent successfully");
   } catch (error) {
@@ -287,7 +287,7 @@ export const getAllBreeder = () => async (dispatch) => {
   dispatch({ type: "ALL_USERS_REQUEST" });
   try {
     const response = await axios.get("/api/users/getallbreeders");
-    console.log(response.data);
+    // console.log(response.data);
     dispatch({ type: "ALL_USERS_SUCCESS", payload: response.data });
   } catch (error) {
     dispatch({ type: "ALL_USERS_FAILS", payload: error.stack });
@@ -298,7 +298,7 @@ export const getAllTransport = () => async (dispatch) => {
   dispatch({ type: "ALL_USERS_REQUEST" });
   try {
     const response = await axios.get("/api/users/getalltransport");
-    console.log(response.data);
+    // console.log(response.data);
     dispatch({ type: "ALL_USERS_SUCCESS", payload: response.data });
   } catch (error) {
     dispatch({ type: "ALL_USERS_FAILS", payload: error.stack });

@@ -20,7 +20,7 @@ const RegistrationForm = ({ match }) => {
   const { userInfo } = userState;
   const id = userInfo._id;
   
-  console.log(id);
+  // console.log(id);
 
   const submitForm = (e) => {
     e.preventDefault();
