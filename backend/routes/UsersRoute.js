@@ -9,6 +9,7 @@ const { protect } = require("../middlewares/authMiddleware");
 const User = require("../models/UserModel");
 const Breeder = require("../models/BreederModel");
 const Transport = require("../models/TransportModel");
+const Token = require("../models/Token");
 
 const router = express.Router();
 
@@ -23,6 +24,8 @@ router
   .route("/profile")
   .get(protect, getUserProfile)
   .put(protect, updateUserProfile);
+
+// router.use("/auth", )
 
 router.get("/getallusers", async (req, res) => {
   try {
@@ -215,5 +218,30 @@ router.get("/getalltransport", async (req, res) => {
     res.status(404).json({ message: error });
   }
 });
+
+router.get("/:id/verify/:token", async (req, res) => {
+  try {
+    const user = await User.findOne({_id: req.params.id})
+    if(!user){
+      return res.status(400).send({message: "Invalid Link"})
+    }
+
+    const token = await Token.find({
+      userId: user._id,
+      token: req.params.token,
+    })
+
+    if(!token){
+      return res.status(400).send({message: "Invalid Link"})
+    }
+
+    await User.updateOne({_id: user.id, verified: true})
+    await token.remove()
+
+    res.status(200).send({message:"Email verified"})
+  } catch (error) {
+    res.status(401).send({message:"Email not verified"})
+  }
+})
 
 module.exports = router;

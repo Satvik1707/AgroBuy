@@ -16,26 +16,26 @@ const BreederScreen = () => {
         <h1 className="text-center p-2 ">Breeder Panel</h1>
         <br />
         <Col md={2}>
-          {!userInfo.isBreeder ? (
-            <div className="d-grid gap-2" role="group">
-              <a href="/breeder/register" className="btn btn-primary ">
-                Registration Form
-              </a>
-              <br />
-            </div>
-          ) : (
+          {userInfo.isBreeder ? (
             <div>
               <div className="d-grid gap-2" role="group">
-                <a href="/breeder/breederForm" className="btn btn-primary ">
+                <a href="/breeder/breederForm" className="btn" style={{'background-color':'#22A39F'}}>
                   Breeder's Form
                 </a>
                 <br />
               </div>
               <div className="d-grid gap-2" role="group">
-                <a href="/breeder/myseeds" className="btn btn-primary ">
+                <a href="/breeder/myseeds" className="btn" style={{'background-color':'#22A39F'}}>
                   Past Seeds
                 </a>
               </div>
+            </div>
+          ) : (
+            <div className="d-grid gap-2" role="group">
+              <a href="/breeder/register" className="btn" style={{'background-color':'#22A39F'}}>
+                Registration Form
+              </a>
+              <br />
             </div>
           )}
         </Col>

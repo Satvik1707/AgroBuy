@@ -18,7 +18,11 @@ const BreederScreen = () => {
         <Col md={2}>
           {!userInfo.isTransport ? (
             <div className="d-grid gap-2" role="group">
-              <a href="/transport/register" className="btn btn-primary ">
+              <a
+                href="/transport/register"
+                className="btn"
+                style={{ "background-color": "#22A39F" }}
+              >
                 Registration Form
               </a>
               <br />
@@ -26,13 +30,21 @@ const BreederScreen = () => {
           ) : (
             <div>
               <div className="d-grid gap-2" role="group">
-                <a href="/transport/allbids" className="btn btn-primary ">
+                <a
+                  href="/transport/allbids"
+                  className="btn"
+                  style={{ "background-color": "#22A39F" }}
+                >
                   All Open bids
                 </a>
                 <br />
               </div>
               <div className="d-grid gap-2" role="group">
-                <a href="/transport/mybids" className="btn btn-primary ">
+                <a
+                  href="/transport/mybids"
+                  className="btn"
+                  style={{ "background-color": "#22A39F" }}
+                >
                   My bids
                 </a>
               </div>

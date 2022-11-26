@@ -15,12 +15,7 @@ const Header = () => {
 
   return (
     <>
-      <Navbar
-        bg="dark"
-        expand="lg"
-        variant="dark"
-        collapseOnSelect
-      >
+      <Navbar expand="lg" variant="light" style={{'background-color': '#22A39F'}} collapseOnSelect>
         <Container>
           <LinkContainer to="/">
             <Navbar.Brand>
@@ -40,12 +35,6 @@ const Header = () => {
                 <NavDropdown title={userInfo.name}>
                   <LinkContainer to="/profile">
                     <NavDropdown.Item>Profile</NavDropdown.Item>
-                  </LinkContainer>
-                  <LinkContainer to="/breeder">
-                    <NavDropdown.Item>Breeder Panel</NavDropdown.Item>
-                  </LinkContainer>
-                  <LinkContainer to="/transport">
-                    <NavDropdown.Item>Transport Panel</NavDropdown.Item>
                   </LinkContainer>
                   <NavDropdown.Item onClick={logoutHandler}>
                     Logout

@@ -16,29 +16,34 @@ const AdminScreen = (history) => {
       window.location.href = "/ ";
     }
   });
-  
+
   return (
     <Container>
       <Row>
-        <h1 className="text-center p-2 ">Admin Panel</h1>
+        <h1 className="text-center p-2 ">Warehouse Panel</h1>
         <br />
         <Col md={2}>
           <div className="d-grid gap-2" role="group">
-            <a href="/admin/orderlist" className="btn btn-primary ">
+            <a
+              href="/admin/orderlist"
+              className="btn"
+              style={{ "background-color": "#22A39F" }}
+            >
               Order List
             </a>
             <br />
-            <a href="/admin/userlist" className="btn btn-primary">
-              User List
-            </a>
-            <br />
-            <a href="/admin/productlist" className="btn btn-primary">
+            <a
+              href="/admin/productlist"
+              className="btn"
+              style={{ "background-color": "#22A39F" }}
+            >
               Product List
             </a>
             <br />
             <a
               href="/admin/addnewproduct"
-              className="btn btn-primary"
+              className="btn"
+              style={{ "background-color": "#22A39F" }}
               onClick={() => history.push("/admin/addnewproduct")}
             >
               Add New Product
@@ -47,12 +52,20 @@ const AdminScreen = (history) => {
         </Col>
         <Col md={10}>
           <Switch>
-            <Route exact path="/admin/updateproduct/:id" component={EditProduct} />
+            <Route
+              exact
+              path="/admin/updateproduct/:id"
+              component={EditProduct}
+            />
             <Route exact path="/admin/orderlist" component={OrderList} />
             <Route exact path="/admin/userlist" component={UserList} />
             <Route exact path="/admin/productlist" component={ProductList} />
-            <Route exact path="/admin/addnewproduct" component={AddNewProduct} />
-            <Route path="/admin" component={OrderList} /> 
+            <Route
+              exact
+              path="/admin/addnewproduct"
+              component={AddNewProduct}
+            />
+            <Route path="/admin" component={OrderList} />
           </Switch>
         </Col>
       </Row>

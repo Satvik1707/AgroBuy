@@ -37,7 +37,7 @@ const AddNewProduct = () => {
       {error && <Message error="Add new product error" />}
       {success && <Success error="Product added succesfully" />}
       {/* {success && <Success success="Product Added Successfully" />} */}
-      <Form onSubmit={submitForm} className="bg-light p-4">
+      <Form onSubmit={submitForm} className="p-4">
         <Row className="mb-2">
           <Row>
             <Form.Group as={Col} controlId="formGridEmail">
@@ -103,9 +103,9 @@ const AddNewProduct = () => {
           </Form.Group>
         </Row>
 
-        <Button variant="primary" type="submit">
+        <button className="btn" style={{'background-color':'#22A39F', 'color':'#000000'}}>
           Add New
-        </Button>
+        </button>
       </Form>
     </div>
   );

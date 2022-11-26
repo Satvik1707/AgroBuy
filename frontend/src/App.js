@@ -18,13 +18,14 @@ import AdminScreen from "./screens/AdminScreen";
 import BreederScreen from "./screens/BreederScreen";
 import TransporterScreen from "./screens/TransporterScreen";
 import FCIScreen from "./screens/FCIScreen";
+import FirstScreen from "./screens/FirstScreen";
 
 function App() {
   return (
     <Router>
       <Header />
-      <main className="my-3 bg-image">
-        <Container >
+      <div className="my-3">
+        <Container>
           <Route path="/order/:id" component={OrderScreen} />
           <Route path="/admin" component={AdminScreen} />
           <Route path="/login" component={LoginScreen} />
@@ -38,9 +39,10 @@ function App() {
           <Route path="/breeder" component={BreederScreen} />
           <Route path="/transport" component={TransporterScreen} />
           <Route path="/fci" component={FCIScreen} />
-          <Route path="/" component={HomeScreen} exact />
+          <Route path="/farmer" component={HomeScreen} />
+          <Route path="/" component={FirstScreen} exact />
         </Container>
-      </main>
+      </div>
 
       <Footer />
     </Router>

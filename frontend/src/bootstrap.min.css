@@ -7343,10 +7343,6 @@ fieldset:disabled .btn {
   margin-top: 0.5rem !important;
   margin-bottom: 0.5rem !important;
 }
-.my-3 {
-  margin-top: 1rem !important;
-  margin-bottom: 1rem !important;
-}
 .my-4 {
   margin-top: 1.5rem !important;
   margin-bottom: 1.5rem !important;
@@ -10444,10 +10440,6 @@ fieldset:disabled .btn {
 }
 :root {
   color-scheme: light;
-}
-.navbar {
-  border-style: solid;
-  border-width: 1px;
 }
 .navbar-fixed-top {
   border-width: 0 0 1px;

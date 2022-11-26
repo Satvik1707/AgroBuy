@@ -1,6 +1,10 @@
 const User = require("../models/UserModel");
+const Token = require("../models/Token") 
 const asyncHandler = require("express-async-handler");
 const generateToken = require("../utils/generateToken");
+const sendMail = require("../utils/sendEmail")
+const crypto = require("crypto");
+const sendEmail = require("../utils/sendEmail");
 
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
@@ -10,7 +14,17 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new Error("User Already Exists!");
   }
 
-  const user = await User.create({ name, email, password });
+  let user = await User.create({ name, email, password });
+
+  const token = await new Token({
+    userId: user._id, 
+    token: crypto.randomBytes(32).toString("hex") 
+  }).save()
+
+  const url = `${process.env.BASE_URL}/users/${user._id}/verify/${token.token}`
+  await sendEmail(user.email,"Verify Email", url);
+  
+
   if (user) {
     res.status(201).json({
       _id: user._id,
