@@ -6,7 +6,7 @@ import "../App.css";
 const ProductScreen = ({ product }) => {
   return (
     <>
-      <Card className=" p-3 rounded">
+      <Card className=" p-3 rounded my-2">
         <Link to={`/product/${product._id}`}>
           <img src={product.image} />
         </Link>

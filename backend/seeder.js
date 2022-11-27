@@ -22,8 +22,8 @@ const importData = async () => {
     await User.deleteMany();
     await Breeder.deleteMany();
     const createUser = await User.insertMany(users);
-    const craetebreeder = await Breeder.insertMany(breeder);
-    const createseed = await Seeds.insertMany(seeds);
+    // const craetebreeder = await Breeder.insertMany(breeder);
+    // const createseed = await Seeds.insertMany(seeds);
     const adminUser = createUser[0]._id;
     const sampleData = products.map((product) => {
       return { ...product, user: adminUser };

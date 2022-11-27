@@ -12,6 +12,8 @@ import {
   ListGroupItem,
   Form,
 } from "react-bootstrap";
+import '../App.css'
+
 const ProductDetails = ({ history, match }) => {
   const [qty, setQty] = useState(1);
   const dispatch = useDispatch();
@@ -27,14 +29,16 @@ const ProductDetails = ({ history, match }) => {
   };
   return (
     <>
-      <Link to="/" className="btn btn-light">
-        <i className="fas fa-arrow-left    "></i>
+      <br/>
+      <Link to="/farmer" className="btn btn-light">
+        <i className="fas fa-arrow-left"></i>
+
         &nbsp; GO BACK
       </Link>
-
       <Row>
         <Col md={6}>
-          <Image src={product.image} alt={product.name} fluid />
+      <br/>
+          <Image className = "image" src={product.image} alt={product.name} fluid  />
         </Col>
         <Col md={3}>
           <ListGroup variant="flush">
@@ -56,10 +60,11 @@ const ProductDetails = ({ history, match }) => {
             <Row>
               <Col>Status :</Col>
               <Col>
-                {product.countInStock > 0 ? "In Stock " : "out of stock"}
+                {product.countInStock > 0 ? "In Stock" : "Out of Stock"}
               </Col>
             </Row>
           </ListGroupItem>
+          <br/>
           {product.countInStock > 0 && (
             <ListGroupItem>
               <Row>
@@ -71,7 +76,7 @@ const ProductDetails = ({ history, match }) => {
                 >
                   {[...Array(product.countInStock).keys()].map((x) => (
                     <option key={x + 1} value={x + 1}>
-                      {x + 1}
+                      {(x + 1)}
                     </option>
                   ))}
                 </Form.Control>
@@ -79,6 +84,7 @@ const ProductDetails = ({ history, match }) => {
             </ListGroupItem>
           )}
           <ListGroupItem>
+            <br/>
             <Button
               className="btn-block"
               type="button"

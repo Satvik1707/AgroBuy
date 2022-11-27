@@ -12,24 +12,28 @@ const footer = () => {
             <div class="row mt-3">
               <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                 <h6 class="text-uppercase fw-bold mb-4">Agrobuy</h6>
-                <p></p>
+                <p>
+                  AgroBuy is deployed in a P2P (Peer-to-Peer) network and runs
+                  on a two-phase verification system with four main nodes (FCI,
+                  Farmer, Warehouse, Transport) in the chain
+                </p>
               </div>
 
               <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
                 <h6 class="text-uppercase fw-bold mb-4">Products</h6>
                 <p>
-                  <a href="#!" class="text-reset">
+                  <a href="/farmer" class="text-reset">
                     Farmer Portal
                   </a>
                 </p>
                 <p>
-                  <a href="#!" class="text-reset">
+                  <a href="/breeder" class="text-reset">
                     Breeder Portal
                   </a>
                 </p>
                 <p>
-                  <a href="#!" class="text-reset">
-                    Transport Portal
+                  <a href="/transport" class="text-reset">
+                    Transporter Portal
                   </a>
                 </p>
               </div>
@@ -52,7 +56,7 @@ const footer = () => {
         </section>
 
         <div class="text-center p-4">
-          © 2021 Copyright:&nbsp;
+          © 2022 Copyright:&nbsp;
           <a class="text-reset fw-bold" href="/">
             Agrobuy
           </a>

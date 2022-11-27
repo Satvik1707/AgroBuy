@@ -28,6 +28,7 @@
     "nodemon": "^2.0.6",
     "otp-generator": "^4.0.0",
     "react-icons": "^4.4.0",
+    "react-metamask-login-button": "^1.0.18",
     "reactjs-popup": "^2.0.5",
     "two-step-auth": "^1.1.2"
   },

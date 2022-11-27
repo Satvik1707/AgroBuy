@@ -7,6 +7,8 @@ import { getOrderDetails, payOrder } from "../actions/orderAction";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/shared/Message";
 import Loader from "../components/shared/Loader";
+import "../App.css";
+import MetaMaskLoginButton from "react-metamask-login-button";
 
 const OrderScreen = ({ match }) => {
   const orderId = match.params.id;
@@ -30,7 +32,6 @@ const OrderScreen = ({ match }) => {
   }
 
   const successPaymentHandler = (paymentResult) => {
-    // console.log(paymentResult);
     dispatch(payOrder(orderId, paymentResult));
   };
 
@@ -66,11 +67,14 @@ const OrderScreen = ({ match }) => {
     <Message variant="danger">{error}</Message>
   ) : (
     <>
-      <h2>Order {order._id}</h2>
+      <h3>Order ID: {order._id}</h3>
+
       <Row>
         <Col md={8}>
           <ListGroup.Item variant="flush">
-            <h2>Pickup Details</h2>
+            <strong>
+              <h2>Pickup Details</h2>
+            </strong>
             <p>
               <strong>Name : </strong>
               {order.user.name}
@@ -95,8 +99,8 @@ const OrderScreen = ({ match }) => {
           <ListGroup.Item>
             <h2>Payment Method</h2>
             <p>
-              <strong>Method :</strong>
-              <strong>{order.paymentMethod}</strong>
+              <strong>Method :</strong>&nbsp;
+              {order.paymentMethod}
             </p>
             {order.isPaid ? (
               <Message variant="success">Paid On {order.paidAt}</Message>
@@ -158,12 +162,10 @@ const OrderScreen = ({ match }) => {
             <ListGroup.Item>
               {loadingPay && <Loader />}
               {!sdkReady ? (
-                <Loader />
+                <div className="div">
+                  <MetaMaskLoginButton />
+                </div>
               ) : (
-                // <PayPalButton
-                //   amount={order.totalPrice}
-                //   onSuccess={successPaymentHandler}
-                // />
                 <div></div>
               )}
             </ListGroup.Item>

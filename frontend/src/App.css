@@ -1,9 +1,20 @@
 .my-3 {
-  height: 80vh;
+  height: 80%;
   width: 100%;
   background-image: url("https://i.postimg.cc/8zhHxWMt/bg.webp");
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   background-size: cover; 
+}
+
+.image {
+  width: 600px;
+  height: 600px;
+  border: 3px solid;
+}
+
+.div {
+  text-align: center;
+  margin: 5px;
 }
 
 img {
